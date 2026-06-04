@@ -80,6 +80,33 @@ tw-link:visited {
 .madness {
 
     animation: madnessShake 1s;
+}
+#startBtn{
+    position: fixed;
+    bottom: 8%;
+    right: 6%;
+
+    font-size: 2em;
+    font-weight: bold;
+
+    color: #FFD700;
+
+    text-shadow:
+        2px 2px 5px black,
+        0 0 10px rgba(0,0,0,0.8);
+
+    z-index: 100;
+}
+
+/* 手机适配 */
+@media (max-width:768px){
+
+    #startBtn{
+        font-size: 1.4em;
+        right: 5%;
+        bottom: 5%;
+    }
+
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">window.musicStarted = false;
 
 window.bgMusic = new Audio("audio/crazy1.mp3");
@@ -438,7 +465,9 @@ Could John have taken it? 会是John拿走的吗？
 &lt;script&gt;
 changeBackground(&#39;Room.jpg&#39;)
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="12" name=" Diary" tags="" position="1275,6125" size="100,100">You think you don&#39;t need your diary any more, because there are no longer any voices in your head that you need to hide.
-你觉得你不再需要日记了，因为你脑子里已经没有任何需要藏起来的声音了。</tw-passagedata><tw-passagedata pid="13" name=" DoSomethingElse" tags="" position="975,2200" size="100,100">Living at home leaves you with nothing much to do and doesn&#39;t require much energy. 
+你觉得你不再需要日记了，因为你脑子里已经没有任何需要藏起来的声音了。
+
+[[take rest -&gt; Rest]]</tw-passagedata><tw-passagedata pid="13" name=" DoSomethingElse" tags="" position="975,2200" size="100,100">Living at home leaves you with nothing much to do and doesn&#39;t require much energy. 
 
 You don&#39;t feel like sleeping very much.
 
@@ -2421,34 +2450,20 @@ The summer has only begun.
 changeBackground(&#39;Action.jpg&#39;)
 
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="135" name="Becoming &quot;Her&quot;" tags="" position="1275,25" size="100,100">&lt;script&gt;
-
 changeBackground(&#39;BackGround1.jpg&#39;)
-
 &lt;/script&gt;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+&lt;div id=&quot;startBtn&quot;&gt;
 (link:&quot;Press to Start&quot;)[
-    
+
     &lt;script&gt;
-
     startMusic()
-
     &lt;/script&gt;
 
     (goto:&quot;Background&quot;)
-]</tw-passagedata><tw-passagedata pid="136" name="Day2Menu" tags="" position="750,2575" size="100,100">Remaining actions: $day2actions
+
+]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="136" name="Day2Menu" tags="" position="750,2575" size="100,100">Remaining actions: $day2actions
 Today, you can have two actions.
 你有两次行动机会。
 
