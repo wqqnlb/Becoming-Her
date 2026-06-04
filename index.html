@@ -2669,16 +2669,17 @@ The summer has only begun.
 changeBackground(&#39;Action.jpg&#39;)
 
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="135" name="Becoming &quot;Her&quot;" tags="" position="1275,25" size="100,100">&lt;script&gt;
+window.onload = function () {
 
-if(window.innerWidth &lt; 768)
-{
-    changeBackground(&#39;BackGround1_mobile.png&#39;);
-}
-else
-{
-    changeBackground(&#39;BackGround1.jpg&#39;);
-}
+    const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
 
+    if (isMobile) {
+        changeBackground(&#39;BackGround1_mobile.png&#39;);
+    } else {
+        changeBackground(&#39;BackGround1.jpg&#39;);
+    }
+
+};
 &lt;/script&gt;
 &lt;div id=&quot;startBtn&quot;&gt;
 (link:&quot;Press to Start&quot;)[
