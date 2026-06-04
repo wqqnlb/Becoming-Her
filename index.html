@@ -98,19 +98,103 @@ tw-link:visited {
     z-index: 100;
 }
 
+
 /* 手机适配 */
-@media (max-width: 768px){
+@media (max-width:768px){
 
-    #title{
-        font-size:8vw;
+    #startBtn{
+        font-size: 1.4em;
+        right: 5%;
+        bottom: 5%;
     }
 
-    #start-button{
-        font-size:1.3em;
-        right:5%;
-        bottom:5%;
-    }
+}
+body {
+  margin: 0;
+  background: black;
+  color: #e5dbff;
+  font-family: Georgia, serif;
+}
 
+/* 🫁 背景“呼吸感” */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  opacity: 0.6;
+  animation: breathe 6s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes breathe {
+  0%   { opacity: 0.4; filter: brightness(0.9); }
+  50%  { opacity: 0.7; filter: brightness(1.2); }
+  100% { opacity: 0.4; filter: brightness(0.9); }
+}
+
+/* 🎬 场景容器 */
+.scene {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 🎞️ 字幕上升 */
+.credit {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+
+  top: 100%;
+  animation: creditsUp 22s linear forwards;
+
+  z-index: 1;
+}
+
+@keyframes creditsUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-170vh);
+  }
+}
+
+/* ✨ 文本风格 */
+.title {
+  font-size: 42px;
+  letter-spacing: 3px;
+  margin-bottom: 40px;
+}
+
+.sub {
+  margin-top: 25px;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.name {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.work {
+  font-size: 16px;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+.thanks {
+  margin-top: 60px;
+  font-size: 20px;
+  opacity: 0.9;
+
+  /* 🌟 情绪收束 */
+  text-shadow: 0 0 12px #e5dbff;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">window.musicStarted = false;
 
 window.bgMusic = new Audio("audio/crazy1.mp3");
@@ -235,7 +319,22 @@ window.madnessEffect = function(){
 
     },1000);
 
-}</script><tw-passagedata pid="1" name=" AmbiguousEnding" tags="" position="650,5000" size="100,100">As you go about your days in a daze,
+}
+setTimeout(() => {
+  let audio = document.querySelector("audio");
+
+  if (!audio) return;
+
+  let fade = setInterval(() => {
+    if (audio.volume > 0.05) {
+      audio.volume -= 0.05;
+    } else {
+      audio.volume = 0;
+      clearInterval(fade);
+    }
+  }, 200);
+
+}, 12000);</script><tw-passagedata pid="1" name=" AmbiguousEnding" tags="" position="650,5000" size="100,100">As you go about your days in a daze,
 
 you gradually notice that the familiar wallpaper in the room is starting to peel away,
 
@@ -267,11 +366,15 @@ You want to do something to relieve your boredom.
 
 You may do 2 actions today.
 
-第二天到来，John去上班了。你独自一人在家。你想做点什么来打发无聊。
+第二天到来，John去上班了。
+
+你独自一人在家。
+
+你想做点什么来打发无聊。
 
 今天你可以做两件事。
 
-[[Continue-&gt;DayMenu]]
+[[Continue -&gt;DayMenu]]
 &lt;script&gt;
 
 changeBackground(&#39;Room.jpg&#39;)
@@ -287,8 +390,8 @@ changeBackground(&#39;Room.jpg&#39;)
      Finally, one night, John received another emergency surgery call and left home. You decide
     终于有一天晚上，约翰接到另一个紧急手术电话离开了家。你决定：
 
-    [[Try to escape the house-&gt;EscapeEndingStart]]
-    [[Give up and keep staying at home -&gt; CheckSan]]
+    [[Try to escape the house 尝试从这个房子逃走-&gt;EscapeEndingStart]]
+    [[Give up and keep staying at home 放弃，继续留在家里-&gt; CheckSan]]
 ]
 
 (else:)[ 
@@ -302,7 +405,7 @@ changeBackground(&#39;Room.jpg&#39;)
     
     你又在这样的日子里度过了半个月。你觉得日子变得越来越重复，想要逃离的渴望也逐渐被这些重复的日子磨平了。你渐渐接受了自己永远无法逃脱的事实。
 
-    [[Continue your endless life-&gt; CheckSan]]
+    [[Continue your endless life 继续你看不到尽头的人生-&gt; CheckSan]]
 ]
 &lt;script&gt;
 
@@ -343,13 +446,13 @@ John lead you into your room..
 
 This is a very big and airy room. It is a nursery at the top of the house.
 
-John：亲爱的，这是我们新的家。你会爱上这个安静的地方的。我已经为你安排好了一切，让你能好好休息。在这里，你会过上非常幸福平静的生活——只要你听我的吩咐。
+John：亲爱的，欢迎回家。你会慢慢学着喜欢这里的，毕竟外面的世界对你来说太过纷扰了。我已经替你考虑周全，安排好了你需要的一切。你不必再费心思考，也不必让自己疲惫。相信我，只要按照我的安排生活，你会比现在快乐得多。
 
 约翰带你走进你的房间。
 
 这是一个宽敞明亮的大房间。它是房子顶层的一间育儿室。
 
-[[You want to check-&gt;check your room]]
+[[You want to check 你想查看 -&gt;check your room]]
 &lt;script&gt;
 
 changeBackground(&#39;Room.jpg&#39;)
@@ -374,14 +477,14 @@ John：亲爱的，这是我们新的家。你会爱上这个安静的地方的�
 changeBackground(&#39;Room.jpg&#39;)
 
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="8" name=" CheckSan" tags="" position="775,4875" size="100,100">(if: $sanity &lt;= 15)[
-    [[New Day-&gt; MadnessEnding]]
+    [[New Day 新的一天-&gt; MadnessEnding]]
 ]
 (else-if: $obedience &gt; 85)[ 
 
-    [[New Day-&gt; ConformityEnding]]   
+    [[New Day 新的一天-&gt; ConformityEnding]]   
     ]
     (else:)[
-    [[Ambiguous life -&gt; AmbiguousEnding]]
+    [[Ambiguous life 迷惘的人生-&gt; AmbiguousEnding]]
     ]
     &lt;script&gt;
 
@@ -423,11 +526,17 @@ You&#39;re alone in the house.
 
 You find that what you can do every day is pretty much the same, and your days can be a bit boring
 
-第二天到来，约翰也去上班了。你独自一人在家。你发现你每天可以做的事情都大同小异，日子有一些无聊。
-You vaguely hear the child&#39;s crying,  as your kid&#39;s mother, you decide to:
-你隐约听到了孩子的哭声，作为孩子的母亲，你决定：
-[[check baby&#39;s room -&gt; baby room]]
-[[ do nothing -&gt; not baby room]]
+第二天到来，约翰也去上班了。
+
+你独自一人在家。
+
+你发现你每天可以做的事情都大同小异，日子有一些无聊。
+
+Suddenly, You vaguely hear the child&#39;s crying,  as your kid&#39;s mother, you decide to:
+突然，你隐约听到了孩子的哭声，作为孩子的母亲，你决定：
+
+[[check baby&#39;s room 去婴儿房看看 -&gt; baby room]]
+[[ do nothing 什么也不做 -&gt; not baby room]]
 &lt;script&gt;
 
 changeBackground(&#39;Room.jpg&#39;)
@@ -471,7 +580,7 @@ changeBackground(&#39;Room.jpg&#39;)
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="12" name=" Diary" tags="" position="1275,6125" size="100,100">You think you don&#39;t need your diary any more, because there are no longer any voices in your head that you need to hide.
 你觉得你不再需要日记了，因为你脑子里已经没有任何需要藏起来的声音了。
 
-[[take rest -&gt; Rest]]</tw-passagedata><tw-passagedata pid="13" name=" DoSomethingElse" tags="" position="975,2200" size="100,100">Living at home leaves you with nothing much to do and doesn&#39;t require much energy. 
+[[take rest 休息 -&gt; Rest]]</tw-passagedata><tw-passagedata pid="13" name=" DoSomethingElse" tags="" position="975,2200" size="100,100">Living at home leaves you with nothing much to do and doesn&#39;t require much energy. 
 
 You don&#39;t feel like sleeping very much.
 
@@ -504,13 +613,17 @@ You finally remembered， that your name was
 &#39;&#39;Charlotte Perkins Gilman&#39;&#39;
 
 你不停地跑啊跑，直到双脚失去了所有知觉。
+
 终于，前方出现了一道明亮的光线。
+
 你终于彻底离开了那个将你禁锢的地方。外面的世界喧嚣而混乱，但你感觉到神经里的躁动正逐渐平息下来。
+
 你终于想起了，你的名字是
+
 &#39;&#39;“夏洛特·珀金斯·吉尔曼”&#39;&#39;
 
 
-[[Reach an escape ending -&gt; ThanksPage]]
+[[Reach an escape ending 达成逃离结局-&gt; ThanksPage]]
 &lt;script&gt;
 
 changeBackground(&#39;EE.jpg&#39;)
@@ -521,7 +634,7 @@ changeBackground(&#39;EE.jpg&#39;)
 restoreMusic()
 
 &lt;/script&gt;
-You: You are back 
+&#39;&#39;You&#39;&#39;: You are back 
         你回来啦
         I lay in bed all day, thinking of nothing; it was very quiet.
         我在床上躺了一整天，什么都没想，特别安静
@@ -554,7 +667,7 @@ You had finally achieved true (text-colour:#a61e4d)[&#39;&#39;(text-style:&quot;
 
 你终于实现了真正意义上的(text-colour:#a61e4d)[(text-style:&quot;shadow&quot;,&quot;fade-in-out&quot;)[&#39;&#39;“康复”&#39;&#39;]]
 
-[[Reach a comformity ending -&gt; ThanksPage]]</tw-passagedata><tw-passagedata pid="17" name=" GoBed" tags="" position="1025,5750" size="100,100">The moonlight crept slowly across the wallpaper; the patterns grew blurred in the night, like the lace on old curtains, hanging there quietly. The air carried the scent of John’s medicine, mingled with the smell of clean sheets—a warm, comforting scent. The whole house was silent; John’s breathing was deep and steady, just like his voice during the day, and it was reassuring. 月光慢慢爬过墙纸，那些花纹在夜里变得模糊，像旧窗帘的花边，安静地挂着。空气里有约翰身上的药味，混着干净床单的味道，暖暖的。整栋房子都是静的，约翰的呼吸很沉很均匀，像他白天说话的声音一样，让人安心。
+[[Reach a comformity ending 达成顺从结局-&gt; ThanksPage]]</tw-passagedata><tw-passagedata pid="17" name=" GoBed" tags="" position="1025,5750" size="100,100">The moonlight crept slowly across the wallpaper; the patterns grew blurred in the night, like the lace on old curtains, hanging there quietly. The air carried the scent of John’s medicine, mingled with the smell of clean sheets—a warm, comforting scent. The whole house was silent; John’s breathing was deep and steady, just like his voice during the day, and it was reassuring. 月光慢慢爬过墙纸，那些花纹在夜里变得模糊，像旧窗帘的花边，安静地挂着。空气里有约翰身上的药味，混着干净床单的味道，暖暖的。整栋房子都是静的，约翰的呼吸很沉很均匀，像他白天说话的声音一样，让人安心。
 
 You decide to: 
 你决定：
@@ -585,9 +698,9 @@ He seemed to have fallen asleep.
 
 You decide:
 
-[[Write Diary -&gt; WriteDiary]]
-[[Investigate wallpaper -&gt; InvestWallpaper]]
-[[Just try to fall asleep -&gt; TryToSleep]]
+[[Write Diary 偷偷写日记-&gt; WriteDiary]]
+[[Investigate wallpaper 观察一下墙纸-&gt; InvestWallpaper]]
+[[Just try to fall asleep 尝试入睡-&gt; TryToSleep]]
 &lt;script&gt;
 
 changeBackground(&#39;SleepingJohn.jpg&#39;)
@@ -609,14 +722,19 @@ Your adrenaline has soared to the extreme, and you managed to break free from Jo
 You ran desperately towards the path outside, even though you didn&#39;t know where it led. 
 
 But there&#39;s no place worse than here, You thought
-幸运的是，你没有听约翰的，一直待在卧室里躺在床上，而是坚持锻炼和散步。
-你现在身体状况好多了。
-新的生活就在眼前。
-你的肾上腺素飙升到了极点，你凭借一种平时不可能拥有的惊人力量挣脱了约翰。
-你拼命朝着外面的小路跑去，尽管不知道它通向何方。
-但你认为，这里已经是最糟糕的地方了。
+幸运的是，你没有听约翰的一直待在卧室里躺在床上，而是坚持锻炼和散步。
 
-[[Run towards your new life ! -&gt; EscapeEnding]]
+你现在的身体状况好多了。
+
+新的生活就在眼前。
+
+你的肾上腺素飙升到了极点，你凭借一种平时不可能拥有的惊人力量挣脱了约翰。
+
+你拼命朝着外面的小路跑去，尽管不知道它通向何方。
+
+但你认为，没有地方会比这里更糟糕了。
+
+[[Run towards your new life ! 奔向你的新生活吧！-&gt; EscapeEnding]]
 ]
 &lt;script&gt;
 
@@ -631,18 +749,22 @@ Even though your desire to survive made your adrenaline surge and you exerted al
 
 Instead, you became emotionally agitated and passed out.
 不幸的是，你通常会听从约翰的建议，尽量待在床上休息。
-你避免了剧烈活动，也没有做任何锻炼，这导致你现在身体状况很差。尽管求生的欲望让你肾上腺素飙升，你使出了全身力气，却还是无法摆脱约翰的控制。
+
+你避免了剧烈活动，也几乎没有做任何锻炼，这导致你现在身体状况很差。
+
+尽管求生的欲望让你肾上腺素飙升，你使出了全身力气，却还是无法摆脱约翰的控制。
+
 相反，你变得情绪激动，最终晕了过去。
 
-[[The Next Day -&gt; CheckSan]]
+[[The Next Day 第二天-&gt; CheckSan]]
 ]</tw-passagedata><tw-passagedata pid="21" name=" HandIn" tags="" position="1025,5500" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
 &lt;script&gt;
 
 restoreMusic()
 
 &lt;/script&gt;
-You: John, I’m waiting for you.
-你：John 我在等你
+&#39;&#39;You&#39;&#39;: John, I’m waiting for you.
+&#39;&#39;你&#39;&#39;：John 我在等你
 
 You stood up, held the diary in both hands, and handed it over, just like a child handing in homework.
 你站起来，双手捧着日记本递过去，像一个孩子递上作业。[[Next -&gt; Dia18]]
@@ -659,11 +781,11 @@ changeBackground(&#39;gate2.jpg&#39;)
 (set: $actions1 to $actions1 - 1)
 
 (if: $actions1 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd]]
 ]</tw-passagedata><tw-passagedata pid="23" name=" I don&#39;t feel well1" tags="" position="850,3325" size="100,100">You feel this strage place is draining your energy.(ener.-3)
 
 你觉得这个奇怪的地方正在消耗你的精力。
@@ -682,6 +804,7 @@ changeBackground(&#39;gate2.jpg&#39;)
 You were so absorbed in your writing that you didn&#39;t notice that John had gone home at some point! 
 
 你感觉这个奇怪的地方正在消耗你的精力。
+
 你太专注于写作，以至于没有注意到约翰在某个时候已经回家了！
 &lt;script&gt;
 
@@ -689,7 +812,8 @@ changeMusic(&#39;foot.mp3&#39;)
 
 &lt;/script&gt;
 
-[[Now he is right behind you, watching you-&gt; ScaryJohn]]
+[[Now he is right behind you, watching you
+他现在就在你背后，注视着你-&gt; ScaryJohn]]
 
 
 (set: $energy to $energy - 3)
@@ -702,11 +826,11 @@ changeMusic(&#39;foot.mp3&#39;)
 (set: $day3actions1 to $day3actions1 - 1)
 
 (if: $day3actions1 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu4]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu4]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd4]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd4]]
 ]</tw-passagedata><tw-passagedata pid="26" name=" I don&#39;t feel well4" tags="" position="1025,4750" size="100,100">You feel this strage place is draining your energy.(ener.-3)
 你认为这个奇怪的地方在消耗你的精力。
 (set: $energy to $energy - 3)
@@ -726,19 +850,19 @@ changeMusic(&#39;foot.mp3&#39;)
 He saw what you had written in your diary:
 
 他看到了你日记里写的内容：
-(set: $sanity to $sanity + 7)
+(set: $sanity to $sanity + 3) (set: $awareness to $awareness - 3)
 
-John was very heartened by want you said. (san. +7)
+John seemed to be very heartened by what you wrote. (san. +3, awar. -3)
 
-约翰听了你的话，感到非常振奋。
+John似乎对你写的内容很满意 (san. +3, awar. -3)
 (set: $actions to $actions - 1)
 
 (if: $actions &gt; 0)[
-    [[Choose another action-&gt;DayMenu]]
+    [[Choose another action 选择另一项行动-&gt;DayMenu]]
 ]
 
 (else:)[
-    [[Night falls-&gt;Night1]]
+    [[Night falls 夜幕降临-&gt;Night1]]
 ]</tw-passagedata><tw-passagedata pid="28" name=" I feel better1" tags="" position="600,2825" size="100,100">However, surprisingly, John happened to come back just as you were writing. (san. -5；awar. +3)
 
 然而，出乎意料的是，约翰恰好在你写东西的时候回来了。
@@ -755,11 +879,11 @@ John was very heartened by want you said. (obed. + 3)
 (set: $day2actions to $day2actions - 1)
 
 (if: $day2actions &gt; 0)[
-    [[Choose another action-&gt;Day2Menu]]
+    [[Choose another action 选择另一项行动-&gt;Day2Menu]]
 ]
 
 (else:)[
-    [[Night falls-&gt;Night2]]
+    [[Night falls 夜幕降临-&gt;Night2]]
 ]</tw-passagedata><tw-passagedata pid="29" name=" I feel trapped" tags="" position="1075,1750" size="100,100">However, surprisingly, John happened to come back just as you were writing. 
 
 然而，出乎意料的是，约翰恰好在你写东西的时候回来了。
@@ -777,11 +901,11 @@ Although John isn&#39;t happy after reading what you wrote, you&#39;ve express y
 (set: $actions to $actions - 1)
 
 (if: $actions &gt; 0)[
-    [[Choose another action-&gt;DayMenu]]
+    [[Choose another action 选择其他行动-&gt;DayMenu]]
 ]
 
 (else:)[
-    [[Night falls-&gt;Night1]]
+    [[Night falls 夜幕降临-&gt;Night1]]
 ]</tw-passagedata><tw-passagedata pid="30" name=" I feel trapped1" tags="" position="850,2825" size="100,100">However, surprisingly, John happened to come back just as you were writing. 
 然而，令人惊讶的是，约翰恰好在你写作的时候回来了。
 
@@ -811,11 +935,11 @@ John was very happy to read your diary; your relationship as a couple has grown 
 (set: $actions to $actions - 1)
 
 (if: $actions &gt; 0)[
-    [[Choose another action-&gt;DayMenu]]
+    [[Choose another action 选择另一个行动-&gt;DayMenu]]
 ]
 
 (else:)[
-    [[Night falls-&gt;Night1]]
+    [[Night falls 夜幕降临-&gt;Night1]]
 ]</tw-passagedata><tw-passagedata pid="32" name=" I should trust John1" tags="" position="725,2950" size="100,100">(set: $obedience to $obedience + 5)
 However, surprisingly, John happened to come back just as you were writing. (san. -5)
 然而，出乎意料的是，约翰恰好在你写东西的时候回来了。
@@ -828,11 +952,11 @@ John was very happy to read your diary; your relationship as a couple has grown 
 (set: $day2actions to $day2actions - 1)
 
 (if: $day2actions &gt; 0)[
-    [[Choose another action-&gt;Day2Menu]]
+    [[Choose another action 选择下一个行动-&gt;Day2Menu]]
 ]
 
 (else:)[
-    [[Night falls-&gt;Night2]]
+    [[Night falls 夜幕降临-&gt;Night2]]
 ]</tw-passagedata><tw-passagedata pid="33" name=" I want to leave" tags="" position="1475,1750" size="100,100">You&#39;re starting to find this place more and more strange, and you&#39;re beginning to want to leave. (awar.+5)
 
 你开始觉得这个地方越来越奇怪，也越来越想离开这里。
@@ -877,7 +1001,8 @@ changeMusic(&#39;foot.mp3&#39;)
 
 &lt;/script&gt;
 
-[[Now he is right behind you, watching you -&gt; ScaryJohn]]
+[[Now he is right behind you, watching you 
+他现在就在你背后，注视着你-&gt; ScaryJohn]]
 
 (set: $awareness to $awareness + 5)
 
@@ -891,11 +1016,11 @@ changeMusic(&#39;foot.mp3&#39;)
 (set: $day3actions to $day3actions - 1)
 
 (if: $day3actions1 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu4]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu4]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd4]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd4]]
 ]</tw-passagedata><tw-passagedata pid="37" name=" I want to leave4" tags="" position="1150,4750" size="100,100">You find this place more and more strange, but you couldn&#39;t step outside for even one step, who is trapping you? 
 你发现这个地方越来越奇怪，但你连一步都无法走出，是谁困住了你？
 (awar.+5)
@@ -903,11 +1028,11 @@ changeMusic(&#39;foot.mp3&#39;)
 (set: $awareness to $awareness + 5)
 
 (if: $day3actions2 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu5]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu5]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd5]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd5]]
 ]</tw-passagedata><tw-passagedata pid="38" name=" I&#39;m very happy" tags="" position="1425,1875" size="100,100">You think you will have a wonderful time here with John. (awar.-3; obed.+5)
 
 你认为你会和约翰在这里度过一段美好的时光。
@@ -919,11 +1044,11 @@ changeMusic(&#39;foot.mp3&#39;)
 
 
 (if: $actions1 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd]]
 ]</tw-passagedata><tw-passagedata pid="39" name=" I&#39;m very happy1" tags="" position="1100,3325" size="100,100">You think you will have a wonderful time here with John. (awar.-3; obed.+5)
 
 你认为你会和约翰在这里度过一个美好的时光。
@@ -952,7 +1077,7 @@ changeMusic(&#39;foot.mp3&#39;)
 
 &lt;/script&gt;
 
-[[Now he is right behind you, watching you -&gt; ScaryJohn]]
+[[Now he is right behind you, watching you 他现在就在你的背后，看着你-&gt; ScaryJohn]]
 
 (set: $obedience to $obedience + 5)
 
@@ -970,11 +1095,11 @@ and you believe you’ll be happier and happier.(awar.-3; obed.+5)
 
 
 (if: $day3actions1 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu4]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu4]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd4]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd4]]
 ]</tw-passagedata><tw-passagedata pid="42" name=" I&#39;m very happy4" tags="" position="1275,4750" size="100,100">You feel that your dependence on John is increasing day by day, to the point where you start to miss him when you can&#39;t see him. It seems that John has become the source of your sense of security. (awar.-3; obed.+5)
 你感觉对约翰的依赖与日俱增，到了无法见到他时就会开始想念他的地步。似乎约翰已经成了你安全感的来源。
 
@@ -986,11 +1111,11 @@ and you believe you’ll be happier and happier.(awar.-3; obed.+5)
 
 
 (if: $day3actions2 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu5]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu5]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd5]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd5]]
 ]</tw-passagedata><tw-passagedata pid="43" name=" InvestWallpaper" tags="" position="975,2325" size="100,100">&lt;script&gt;
 
 changeMusic(&#39;wallchange.mp3&#39;)
@@ -1002,13 +1127,15 @@ You don&#39;t know if it&#39;s just your imagination,
 
 or it&#39;s because you are lack of sleep,
 
-but the wallpaper seems to have changed again. 
+but the wallpaper seems to have changed again. (san. -5; ener. -2)
 
-你不确定这只是你的想象，还是因为你睡眠不足，但墙纸似乎又变了。
-(san. -5; ener. -2)
+你不确定这到底只是你的想象，
 
+还是因为你睡眠不足，
 
-[[The Next Day -&gt; Day2]]
+但墙纸似乎又变了。(san. -5; ener. -2)
+
+[[The Next Day 第二天 -&gt; Day2]]
 &lt;script&gt;
 
 changeBackground(&#39;Night2.jpg&#39;)
@@ -1047,7 +1174,7 @@ Now, go to bed. It&#39;s time for you to get some rest.
 继续保持。过几天我带你出去走走。
 现在，上床睡觉吧，你该休息了
 
-[[Go to Bed -&gt; GoBed]]
+[[Go to Bed 上床睡觉 -&gt; GoBed]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="47" name=" MadnessDay2" tags="" position="775,5250" size="100,100">
 Another day has dawned, and you find yourself staring uncontrollably at these yellow wallpapers—//they’re still changing//. 
 
@@ -1058,7 +1185,7 @@ You spent the entire day like that.
 又是一个清晨，你发现自己不由自主地盯着这些黄色的墙纸——它们仍在不断变化。你凑近过去，紧紧贴着它们，就像溺水者抓住海面上的一块浮木。你一整天都保持着这样的状态。
 
 
-[[Another night has fallen -&gt; MadnessNight2]]</tw-passagedata><tw-passagedata pid="48" name=" MadnessEnding" tags="" position="775,5000" size="100,100">(&lt;script&gt;
+[[Another night has fallen 又一次的夜幕降临了-&gt; MadnessNight2]]</tw-passagedata><tw-passagedata pid="48" name=" MadnessEnding" tags="" position="775,5000" size="100,100">(&lt;script&gt;
 
 changeMusic(&#39;crazy2.mp3&#39;)
 
@@ -1136,7 +1263,7 @@ Then you notice that the wall is covered with (text-colour:red)[(text-style:&quo
 You stared at that increasingly strange wall and didn&#39;t sleep a wink all night.
 你盯着那堵变得越来越诡异的墙，整晚都没合眼。
 
-[[Next day -&gt;MadnessDay3]]
+[[Next day 第二天 -&gt;MadnessDay3]]
 &lt;script&gt;
 
 changeBackground(&#39;wallpaperwoman.jpg&#39;)
@@ -1155,7 +1282,9 @@ As soon as you opened the front gate in the garden, John is back!
 
 He grabbed your arm in anger, trying to drag you into the house.
 
-你刚打开花园的前门，约翰就回来了！他愤怒地抓住你的胳膊，试图把你拖进屋里。
+你刚打开花园的前门，约翰就回来了！
+
+他愤怒地抓住你的胳膊，试图把你拖进屋里。
 
 [[ Break free! 挣扎！-&gt; Gototheend]]
 
@@ -1172,6 +1301,7 @@ You lay in bed until the evening. Finally, you heard John&#39;s footsteps. You o
 你在床上躺到了傍晚，终于，你听到楼下传来了John的脚步声，你乖乖在床上等着他，John走了进来，你...
 
 [[hand in the diary voluntarily 主动上交你的日记 -&gt; HandIn]]
+
 [[give John a hug and care about his day 给John一个拥抱，关心他今天过得怎么样-&gt; GiveHug]]
 &lt;script&gt;
 
@@ -1181,6 +1311,7 @@ changeBackground(&#39;JohnNight.jpg&#39;)
 你想写点什么：
 
 [[ John is right, like always. 约翰是对的，一直都是。 -&gt; JohnIsRight]]
+
 [[Good Girl always recover quickly. 乖女孩总是恢复的很快 -&gt; GoodGirl]]
 &lt;script&gt;
 
@@ -1190,8 +1321,11 @@ changeBackground(&#39;diary1.jpg&#39;)
 你醒来发现John已经离开家去上班了，你的新一天又开始了
 
 You decide to:
-[[take rest -&gt; Rest]]
-[[write your diary -&gt; Diary]]
+你决定：
+
+[[take rest 休息-&gt; Rest]]
+
+[[write your diary 写日记-&gt; Diary]]
 
 &lt;script&gt;
 
@@ -1201,8 +1335,11 @@ changeBackground(&#39;Room.jpg&#39;)
 今天John并没有按时回家，你想他可能又接到急诊手术了，不知道什么时候会回来，你感到十分空虚
 
 You decide to:
-[[Go to bed -&gt; Go]]
-[[~~Write your diary~~ Go to bed -&gt; Go]]
+你决定：
+
+[[Go to bed 去睡觉-&gt; Go]]
+
+[[~~Write your diary 写日记~~ Go to bed 去睡觉 -&gt; Go]]
 
 &lt;script&gt;
 
@@ -1211,7 +1348,7 @@ changeBackground(&#39;room2.jpg&#39;)
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="56" name=" Rest" tags="" position="1150,6125" size="100,100">你在躺椅里度过了你的一天
 You spent your day in the lounge chair.
 
-[[Night -&gt; Nighhht]]</tw-passagedata><tw-passagedata pid="57" name=" ScaryJohn" tags="" position="600,3700" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
+[[Night 入夜-&gt; Nighhht]]</tw-passagedata><tw-passagedata pid="57" name=" ScaryJohn" tags="" position="600,3700" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
 &lt;script&gt;
 
 changeMusic(&#39;crazy2.mp3&#39;)
@@ -1253,7 +1390,7 @@ Even though he&#39;s not home, you shouldn&#39;t worry him—just go to sleep.
 (set: $obedience to $obedience + 5)
 (set: $awareness to $awareness - 5)
 
-[[The next day -&gt; Day3]]
+[[The next day 第二天-&gt; Day3]]
 &lt;script&gt;
 
 changeBackground(&#39;Night2.jpg&#39;)
@@ -1273,7 +1410,7 @@ Like the last night, you think you shouldn&#39;t worry him—just go to sleep.
 [[The next day -&gt; Chapter3]]</tw-passagedata><tw-passagedata pid="61" name=" Sleeppp" tags="" position="1025,5875" size="100,100">John is sleeping so peacefully right next to you; You think it’s time for you to go to sleep too.
 John在你身边睡的这么安详，你觉得你也该入睡了
 
-[[ Go to sleep -&gt; NextD]]</tw-passagedata><tw-passagedata pid="62" name=" TellFeeling" tags="" position="1100,2075" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
+[[ Go to sleep 睡觉-&gt; NextD]]</tw-passagedata><tw-passagedata pid="62" name=" TellFeeling" tags="" position="1100,2075" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
 (set: $awareness to $awareness + 2)
 (set: $sanity to $sanity - 3)
 (awar. +2)
@@ -1290,27 +1427,40 @@ John在你身边睡的这么安详，你觉得你也该入睡了
 
 
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="64" name=" ThanksPage" tags="" position="500,5150" size="100,100">&lt;script&gt;
-
-changeMusic(&#39;crazy1.mp3&#39;)
-
+changeMusic(&#39;crazy1.mp3&#39;);
+changeBackground(&#39;BackGround1.jpg&#39;);
+setTimeout(() =&gt; {
+  let audio = document.querySelector(&quot;audio&quot;);
+  if (audio) {
+    let fade = setInterval(() =&gt; {
+      if (audio.volume &gt; 0.05) {
+        audio.volume -= 0.05;
+      } else {
+        clearInterval(fade);
+      }
+    }, 200);
+  }
+}, 12000);
 &lt;/script&gt;
-=&gt;&lt;=
-(text-colour:#e5dbff)[&#39;&#39;Becoming &quot;Her&quot;&#39;&#39;
 
-Produced by 
-Jessy Jiaxi Chen
-Leah Yueyao Li.
+&lt;div class=&quot;scene&quot;&gt;
+  &lt;div class=&quot;credit&quot;&gt;
 
-Based on 
-//The Yellow Wallpaper//---Charlotte Perkins Gilman.
+    &lt;div class=&quot;title&quot;&gt;Becoming &quot;Her&quot;&lt;/div&gt;
 
-Thanks for playing.
-]
-&lt;script&gt;
+    &lt;div class=&quot;sub&quot;&gt;Produced by / 制作&lt;/div&gt;
+    &lt;div class=&quot;name&quot;&gt;Jessy Jiaxi Chen 陈嘉熙&lt;br&gt;Leah Yueyao Li 李玥瑶&lt;/div&gt;
 
-changeBackground(&#39;BackGround1.jpg&#39;)
+    &lt;div class=&quot;sub&quot;&gt;Based on / 基于&lt;/div&gt;
+    &lt;div class=&quot;work&quot;&gt;
+      The Yellow Wallpaper — Charlotte Perkins Gilman&lt;br&gt;
+      《黄色壁纸》——夏洛特·珀金斯·吉尔曼
+    &lt;/div&gt;
 
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="65" name=" ToughDay3" tags="" position="775,3625" size="100,100">&lt;script&gt;
+    &lt;div class=&quot;thanks&quot;&gt;Thanks for playing.&lt;br&gt;感谢您的游玩&lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="65" name=" ToughDay3" tags="" position="775,3625" size="100,100">&lt;script&gt;
 
 restoreMusic()
 
@@ -1330,12 +1480,15 @@ You want to do something to relieve your boredom.
 You may do 2 actions today.
 
 约翰像往常一样准时去上班了。
+
 你又独自一人待在房子里。
+
 你想做点什么来打发无聊的时间。
-你今天可以执行2个动作。
+
+你今天可以执行2个行动。
 
 
-[[Continue-&gt;Day3Menu]]
+[[Continue 继续-&gt;Day3Menu]]
 &lt;script&gt;
 
 changeBackground(&#39;Room.jpg&#39;)
@@ -1351,16 +1504,24 @@ you managed to have a peaceful night&#39;s sleep, which was a rare occurrence fo
 你不想吵醒约翰，于是选择继续尝试入睡。听着约翰的呼吸声，你终于睡了一个安稳觉，这对你来说可是难得一见的事。(ener. +3; obed. +3)
 
 
-[[The Next Day -&gt; Day2]]
+[[The Next Day 第二天 -&gt; Day2]]
 &lt;script&gt;
 
 changeBackground(&#39;Night2.jpg&#39;)
 
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="67" name=" What a sleeper" tags="" position="1225,1450" size="100,100">You chose to grit your teeth and keep sleeping, but all three noises persisted throughout the entire night. 
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="67" name=" What a sleeper" tags="" position="1225,1450" size="100,100">You chose to grit your teeth and keep sleeping, 
+
+but all three noises persisted throughout the entire night. 
 
 You felt extremely tired when you woke up in the morning. 
 
-你咬紧牙关继续睡，但整夜三种声音都未停歇。第二天早上醒来时，你感到极度疲惫。(obed. +5; ener. -5)
+你咬紧牙关，强迫自己继续睡下去。
+
+然而，那三种诡异的声音却整夜未曾停歇。
+
+它们时远时近，不断在黑暗中回荡。
+
+第二天清晨醒来时，你只觉得浑身疲惫，仿佛一整夜都未曾真正休息过。(obed. +5; ener. -5)
 
 //(text-colour:orange)[(Congratulations! What a sleeper!)]//
 
@@ -1368,7 +1529,7 @@ You felt extremely tired when you woke up in the morning.
 (set: $energy to $energy - 5)
 
 
-[[the next day -&gt; Chapter2]]</tw-passagedata><tw-passagedata pid="68" name=" Write" tags="" position="350,2950" size="100,100">&lt;script&gt;
+[[the next day 第二天-&gt; Chapter2]]</tw-passagedata><tw-passagedata pid="68" name=" Write" tags="" position="350,2950" size="100,100">&lt;script&gt;
 
 changeMusic(&#39;foot.mp3&#39;)
 
@@ -1376,7 +1537,9 @@ changeMusic(&#39;foot.mp3&#39;)
 (awar. +3)
 You were so absorbed in your writing that you didn&#39;t notice that John had gone home at some point! 
 你写的太投入了，都没注意到John不知道什么时候已经到家了
-[[Now he is right behind you, watching you 他现在就在你身后，看着你-&gt; ScaryJohn1]]
+
+[[Now he is right behind you, watching you 
+他现在就在你身后，注视着你-&gt; ScaryJohn1]]
 
 (set: $awareness to $awareness + 3)
 &lt;script&gt;
@@ -1392,7 +1555,7 @@ but in the end, you couldn&#39;t came up with even a single word.
 你打开了那本隐藏的日记，本想写点什么，但最终连一个字都写不出来。(ene.- 2; awar. +3)
 
 
-[[The Next Day -&gt; Day2]]
+[[The Next Day 第二天 -&gt; Day2]]
 &lt;script&gt;
 
 changeBackground(&#39;diary2.jpg&#39;)
@@ -1400,7 +1563,7 @@ changeBackground(&#39;diary2.jpg&#39;)
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="70" name=" Writtee" tags="" position="1150,5875" size="100,100">With John next to you, you think you no longer need to write anything.
 当John在你身边时，你觉得你不再需要写任何东西
 
-[[ Go to sleep -&gt; NextD]]</tw-passagedata><tw-passagedata pid="71" name=" accept this room" tags="" position="1100,950" size="100,100">The last ray of sunlight slipped through the barred windows, 
+[[ Go to sleep 睡觉 -&gt; NextD]]</tw-passagedata><tw-passagedata pid="71" name=" accept this room" tags="" position="1100,950" size="100,100">The last ray of sunlight slipped through the barred windows, 
 
 the room slowly surrendered to the soft, creeping twilight. 
 
@@ -1410,7 +1573,8 @@ silvery glow upon that strange yellow wallpaper.
 
 最后一缕阳光透过铁窗溜了进去，房间渐渐被柔和而缓慢降临的暮色吞噬。随后月亮升起，在那奇特的黄色墙纸上投下一片苍白的银辉。
 
-[[The night comes, it&#39;s your first night in the new house -&gt; first night]]
+[[The night comes, it&#39;s your first night in the new house
+夜幕降临，这是你搬到新家的第一晚-&gt; first night]]
 &lt;script&gt;
 
 changeBackground(&#39;room2.jpg&#39;)
@@ -1428,11 +1592,12 @@ This time it sounds like the rubbing noise of wallpaper ,
 这次听起来像是墙纸摩擦的声音，
 
 You decide to
+你决定
 
-[[keep sleeping -&gt; another noise]]
-[[wake John up -&gt; talk to John]]
-[[Investigate the sound -&gt; strange wallpaper]]
-[[hide -&gt; hide]]</tw-passagedata><tw-passagedata pid="73" name=" another noise2" tags="" position="1225,1325" size="100,100">You think it might just be the sound of the wind and  continue sleeping,
+[[keep sleeping 继续睡 -&gt; another noise]]
+[[wake John up 把John叫醒-&gt; talk to John]]
+[[Investigate the sound 寻找声音来源-&gt; strange wallpaper]]
+[[hide 躲起来-&gt; hide]]</tw-passagedata><tw-passagedata pid="73" name=" another noise2" tags="" position="1225,1325" size="100,100">You think it might just be the sound of the wind and  continue sleeping,
 
 However, later this night, another strange noise wake you up,
 
@@ -1468,10 +1633,11 @@ This room let you feel uncomfortable.
 这个房间让你感到很不舒服。
 
 you want to:
+你想要：
 
-[[change the room-&gt; change the room]]
+[[change the room 更换房间-&gt; change the room]]
 
-[[just accept it-&gt; do not change the room]]</tw-passagedata><tw-passagedata pid="76" name=" change the room" tags="" position="975,825" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
+[[just accept it 接受这个房间-&gt; do not change the room]]</tw-passagedata><tw-passagedata pid="76" name=" change the room" tags="" position="975,825" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
 You: John, I think this room is a little strange. Look at these windows and the floor. They make me feel uncomfortable. Can we change rooms?   
 你：John，我觉得这个房间有点奇怪。看看这些窗户和地板，它们让我感到不舒服。我们能换房间吗？
 [[Next -&gt; Dia]]
@@ -1488,7 +1654,7 @@ changeMusic(&#39;crazy2.mp3&#39;)
 (text-style:&quot;bold&quot;,&quot;blurrier&quot;,&quot;rumble&quot;)[In the end, the wallpaper was gone. All that remained were bare walls. Standing amid the shards scattered across the floor, you looked down and saw beneath the wallpaper—(text-colour:#c92a2a)[nothing at all].
 最终墙纸没了。只剩光秃秃的墙壁。你站在满地碎片中间，低下头，看见墙纸底下——什么也没有。]
 
-[[Night -&gt;MadnessNignt3]]</tw-passagedata><tw-passagedata pid="78" name=" continue tear off" tags="" position="775,5625" size="100,100">&lt;script&gt;
+[[Night 入夜-&gt;MadnessNignt3]]</tw-passagedata><tw-passagedata pid="78" name=" continue tear off" tags="" position="775,5625" size="100,100">&lt;script&gt;
 
 changeMusic(&#39;tear.mp3&#39;)
 
@@ -1496,7 +1662,7 @@ changeMusic(&#39;tear.mp3&#39;)
 (text-style:&quot;blur&quot;,&quot;shudder&quot;)[The crack is getting wider. Your fingers run along the edge, pulling it down; the wallpaper splits open like the skin of a ripe fruit, revealing the yellowed plaster beneath. One strip, then another; the scraps pile up at your feet. You can’t stop.
 裂缝越来越大。你的手指顺着边缘往下扯，墙纸像熟透的果皮一样裂开，露出底下发黄的灰泥。一条，又一条，碎片堆在脚边。你停不下来了。]
 
-[[Continue -&gt; continue]]
+[[Continue 继续撕-&gt; continue]]
 &lt;script&gt;
 
 changeBackground(&#39;wallpaper2.jpg&#39;)
@@ -1515,17 +1681,17 @@ madnessEffect()
 
 (set: $awareness to $awareness - 5)
 
-[[accept this room-&gt; accept this room]]</tw-passagedata><tw-passagedata pid="80" name=" do nothing" tags="" position="1350,1725" size="100,100">You just look at it a few time and leave.
+[[accept this room 接受这个房间-&gt; accept this room]]</tw-passagedata><tw-passagedata pid="80" name=" do nothing" tags="" position="1350,1725" size="100,100">You just look at it a few time and leave.
 
 你只是看几眼就离开了。
 (set: $actions1 to $actions1 - 1)
 
 (if: $actions1 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd]]
 ]</tw-passagedata><tw-passagedata pid="81" name=" do nothing1" tags="" position="1100,3200" size="100,100">You just look at it a few time and leave.
 
 你只是看了一会然后离开。
@@ -1543,22 +1709,22 @@ madnessEffect()
 (set: $day2actions2 to $day2actions2 - 1)
 
 (if: $day2actions2 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu3]]
+    [[Explore another place 探索其他地方-&gt;ExploreMenu3]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd3]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd3]]
 ]</tw-passagedata><tw-passagedata pid="83" name=" do nothing3" tags="" position="625,4500" size="100,100">You just look at it a few time and leave.
-你只是看了一会然后离开。
+你只是看了一会就离开了。
 
 (set: $day3actions1 to $day3actions1 - 1)
 
 (if: $day3actions1 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu4]]
+    [[Explore another place 探索其他地方-&gt;ExploreMenu4]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd4]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd4]]
 ]</tw-passagedata><tw-passagedata pid="84" name=" do nothing4" tags="" position="1025,4625" size="100,100">You just look at it a few time and leave.
 你看了一会然后就离开了。
 
@@ -1593,11 +1759,11 @@ You think you should do more exercise to regain your energy.
 (set: $energy to $energy + 3)
 
 (if: $day2actions &gt; 0)[
-    [[Choose another action-&gt;Day2Menu]]
+    [[Choose another action 选择其他行动-&gt;Day2Menu]]
 ]
 
 (else:)[
-    [[Night falls-&gt;Night2]]
+    [[Night falls 夜幕降临-&gt;Night2]]
 ]</tw-passagedata><tw-passagedata pid="87" name=" exercise3" tags="" position="650,4000" size="100,100">(set: $day3actions to $day3actions - 1)
 (set: $exercise to true)
 You think you should do more exercise to regain your energy. (action-1; ener.+3)
@@ -1625,12 +1791,13 @@ changeBackground(&#39;Night2.jpg&#39;)
 
 长途跋涉后精疲力尽，你和约翰早早睡下了。然而，午夜时分，一阵奇怪的声响将你惊醒，那声音听起来像是从地板底下传来的。
 
-You decide to
+You decide to 
+你决定：
 
-[[keep sleeping -&gt; another noise2]]
-[[wake John up -&gt; talk to John]]
-[[Investigate the sound -&gt; strange wallpaper]]
-[[hide -&gt; hide]]</tw-passagedata><tw-passagedata pid="89" name=" floor" tags="" position="950,575" size="100,100">
+[[keep sleeping 继续睡 -&gt; another noise2]]
+[[wake John up 把John叫醒 -&gt; talk to John]]
+[[Investigate the sound 寻找声音来源 -&gt; strange wallpaper]]
+[[hide 躲起来-&gt; hide]]</tw-passagedata><tw-passagedata pid="89" name=" floor" tags="" position="950,575" size="100,100">
 The floor was covered in scratches, gouges, and splinters.
 
 The wallpaper had also torn away around the floor.
@@ -1723,11 +1890,11 @@ The flowers in the garden downstairs are blooming vibrantly, and seeing them mak
 (set: $energy to $energy + 3)
 
 (if: $day3actions1 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu4]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu4]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd4]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd4]]
 ]
 &lt;script&gt;
 
@@ -1739,7 +1906,11 @@ The flowers in the garden stand quietly under the moonlight, swaying gently in t
 You can&#39;t help but feel that they seem to be freer than you.
 
 You felt that you had regained some energy. (ener. +3)
-花园里的花朵在月光下静静地伫立，在微风中轻轻摇曳。你不禁觉得，它们似乎比你更自由。你感觉自己的精力恢复了一些。
+花园里的花朵在月光下静静地伫立，在微风中轻轻摇曳。
+
+你不禁觉得，它们似乎比你更自由。
+
+你感觉自己的精力恢复了一些。
 
 (set: $visitedGarden1 to true)
 (set: $day3actions2 to $day3actions2 - 1)
@@ -1747,11 +1918,11 @@ You felt that you had regained some energy. (ener. +3)
 (set: $energy to $energy + 3)
 
 (if: $day3actions2 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu5]]
+    [[Explore another place 探索另一个地点-&gt;ExploreMenu5]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd5]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd5]]
 ]
 &lt;script&gt;
 
@@ -1769,11 +1940,11 @@ You look at the front gate and the world outside, and start to woder what it wou
 (set: $obedience to $obedience - 2)
 
 (if: $actions1 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd]]
 ]
 &lt;script&gt;
 
@@ -1853,11 +2024,11 @@ You looked toward the gate, which seemed to symbolize freedom and a different ki
 (set: $obedience to $obedience - 2)
 
 (if: $day3actions1 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu4]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu4]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd4]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd4]]
 ]
 &lt;script&gt;
 
@@ -1876,22 +2047,25 @@ Outside the gate, there was an endless expanse of darkness. But you didn&#39;t f
 (set: $obedience to $obedience - 2)
 
 (if: $day2actions1 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu5]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu5]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd5]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd5]]
 ]</tw-passagedata><tw-passagedata pid="100" name=" hide" tags="" position="1100,1325" size="100,100">You chose to hide behind the curtain, 
 
 the noise lasted all night.
 
-You were too afraid to go out and didn&#39;t get any sleep.
-你选择躲在窗帘后面，噪音持续了一整夜。你太害怕出去，彻夜未眠。(san. -2; ener. -7)
+You were too afraid to go out and didn&#39;t get any sleep. (san. -2; ener. -7)
+
+你选择躲在窗帘后面，噪音持续了一整夜。
+
+你因为太害怕而不敢出去，彻夜未眠。(san. -2; ener. -7)
 
 (set: $sanity to $sanity - 2)
 (set: $energy to $energy - 7)
 
-[[the next day -&gt; Chapter2]]
+[[the next day 第二天-&gt; Chapter2]]
 &lt;script&gt;
 
 changeBackground(&#39;curtain.jpg&#39;)
@@ -1909,7 +2083,7 @@ You trust this is a place where can heal you.(ener. -2; obed. +3)
 
 (set: $obedience to $obedience + 3)
 (set: $energy to $energy - 2)
-[[Night falls-&gt;Night1]]
+[[Night falls 夜幕降临-&gt;Night1]]
 </tw-passagedata><tw-passagedata pid="102" name=" rest1" tags="" position="725,2825" size="100,100">(set: $day2actions to $day2actions - 1)
 (set: $rest to true)
 You feel very tried and just want to take a rest. (action-1)
@@ -1922,7 +2096,7 @@ You trust this is a place where can heal you.(ener. -2; obed. +3)
 
 (set: $obedience to $obedience + 3)
 (set: $energy to $energy - 2)
- [[Night falls-&gt;Night2]]
+ [[Night falls 夜幕降临-&gt;Night2]]
 </tw-passagedata><tw-passagedata pid="103" name=" rest3" tags="" position="800,4000" size="100,100">(set: $day3actions to $day3actions - 1)
 (set: $rest to true)
 You feel very tried and just want to take a rest. (action-1)
@@ -1947,11 +2121,11 @@ This room is more comfortable and brighter than where you&#39;re staying now, ye
 (set: $awareness to $awareness + 3)
 
 (if: $actions1 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd]]
 ]
 
 &lt;script&gt;
@@ -1968,11 +2142,11 @@ This room is more comfortable and brighter than where you&#39;re staying now, ye
 (set: $awareness to $awareness + 3)
 
 (if: $day2actions1 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu1]]
+    [[Explore another place 探索另一个地点-&gt;ExploreMenu1]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd1]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd1]]
 ]
 &lt;script&gt;
 
@@ -2035,18 +2209,20 @@ Although it was not as bright at night,
 
 you still felt that if you lived there, you would be much more comfortable. (awar. +3)
 
-你再次走进了那个你长久以来渴望进入的房间。虽然夜晚并不像白天那么明亮，但你仍然觉得如果住在那里，会舒适得多。
+你再次走进了那个你长久以来渴望进入的房间。
+
+虽然夜晚并不像白天那么明亮，但你仍然觉得如果住在那里，会舒适得多。
 
 (set: $day3actions2 to $day3actions2 - 1)
 
 (set: $awareness to $awareness + 3)
 
 (if: $day3actions2 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu5]]
+    [[Explore another place 探索另一个地点-&gt;ExploreMenu5]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd5]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd5]]
 ]
 &lt;script&gt;
 
@@ -2065,11 +2241,11 @@ I think this wallpaper is a bit strange and gives me a very uncomfortable feelin
 (set: $actions1 to $actions1 - 1)
 
 (if: $actions1 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd]]
 ]</tw-passagedata><tw-passagedata pid="110" name=" something about wallpaper1" tags="" position="975,3450" size="100,100">&lt;script&gt;
 
 changeMusic(&#39;wallchange.mp3&#39;)
@@ -2119,9 +2295,12 @@ There is one marked peculiarity about this paper—it changes as the light chang
 By moonlight it becomes bars. 
 
 The woman behind it is as plain as can be(san.-5)
-这篇纸张有一个显著的奇特之处——它会随着光线的变化而变化。
-在月光下，它呈现出条纹状。
-纸后的女人平静的在那。
+
+这墙纸有一种令人不安的特性——每当光线变化时，它的模样也会随之改变。
+
+月光洒落时，那些杂乱的花纹竟像牢笼般的栏杆。
+
+而隐藏在其后的女人身影，也变得无比清晰。（san. -5）
 
 
 (set: $sanity to $sanity - 5)
@@ -2129,13 +2308,13 @@ The woman behind it is as plain as can be(san.-5)
 (set: $day3actions1 to $day3actions1 - 1)
 
 (if: $day3actions1 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu4]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu4]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd4]]
-]</tw-passagedata><tw-passagedata pid="113" name=" something about wallpaper4" tags="" position="1150,4875" size="100,100">The wallpaper still makes I feel an inexplicable discomfort, but ironically, now I only have it left. （san. -5）
-这壁纸仍然让你感到一种难以言喻的不适，但讽刺的是，现在你只剩下它了。
+    [[Finish exploring 结束探索-&gt;ExploreEnd4]]
+]</tw-passagedata><tw-passagedata pid="113" name=" something about wallpaper4" tags="" position="1150,4875" size="100,100">The wallpaper still makes you feel an inexplicable discomfort, but ironically, now you only have it left. （san. -5）
+这壁纸仍然让你感到一种难以言喻的不适，但讽刺的是，现在你只剩下它了。（san. -5）
 
 (set: $sanity to $sanity - 5)
 
@@ -2143,14 +2322,14 @@ The woman behind it is as plain as can be(san.-5)
 
 
 (if: $day3actions2 &gt; 0)[
-    [[Explore another place-&gt;ExploreMenu5]]
+    [[Explore another place 探索另一个地方-&gt;ExploreMenu5]]
 ]
 
 (else:)[
-    [[Finish exploring-&gt;ExploreEnd5]]
+    [[Finish exploring 结束探索-&gt;ExploreEnd5]]
 ]</tw-passagedata><tw-passagedata pid="114" name=" still change the room" tags="" position="975,950" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
 You: But...I think the room in the first floor will make me feel better. 
-你：但是……我觉得一楼的房间会让我感觉更好。
+你：但是……我觉得一楼的房间会让我感觉更舒服。
 [[Next -&gt; Dia2]]
 &lt;/div&gt;
 </tw-passagedata><tw-passagedata pid="115" name=" still try to change the room" tags="" position="975,1075" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
@@ -2193,8 +2372,8 @@ You find the wall paper seem to change again.
 
 You decide to:
 
-[[writing something -&gt; writing something]]
-[[do nothing -&gt; do nothing]]
+[[writing something 写点什么-&gt; writing something]]
+[[do nothing 什么也不做-&gt; do nothing]]
 
 &lt;script&gt;
 
@@ -2203,12 +2382,12 @@ changeBackground(&#39;wallpaper3.jpg&#39;)
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="119" name=" the wall paper1" tags="" position="975,3075" size="100,100">
 (set: $visitedWallpaper1 to true)
 You find the wall paper seem to change again.
-你发现墙纸又变了。
+你发现墙纸似乎又变了。
 
 You decide to:
 
-[[writing something -&gt; writing something1]]
-[[do nothing -&gt; do nothing1]]
+[[writing something 写点什么-&gt; writing something1]]
+[[do nothing 什么也不做-&gt; do nothing1]]
 &lt;script&gt;
 
 changeBackground(&#39;wallpaper1.jpg&#39;)
@@ -2221,10 +2400,10 @@ You find the wall paper seem to change again. (san. -3)
 你发现墙纸又在变化。
 (set: $sanity to $sanity - 3)
 
-You decide to:
+You decide to 你决定:
 
-[[writing something -&gt; writing something2]]
-[[do nothing -&gt; do nothing2]]
+[[writing something 写点什么-&gt; writing something2]]
+[[do nothing 什么也不做-&gt; do nothing2]]
 &lt;script&gt;
 
 changeBackground(&#39;wallpaper4.jpg&#39;)
@@ -2237,8 +2416,8 @@ You find the wall paper seem to change again. (san. -3)
 You decide to:
 你决定：
 
-[[writing something -&gt; writing something3]]
-[[do nothing -&gt; do nothing3]]
+[[writing something 写点什么-&gt; writing something3]]
+[[do nothing 什么也不做-&gt; do nothing3]]
 
 &lt;script&gt;
 
@@ -2258,8 +2437,8 @@ You decide to:
 你决定：
 
 
-[[writing something -&gt; writing something4]]
-[[do nothing -&gt; do nothing4]]
+[[writing something 写点什么-&gt; writing something4]]
+[[do nothing 什么也不做-&gt; do nothing4]]
 &lt;script&gt;
 
 changeBackground(&#39;wallpaper4.jpg&#39;)
@@ -2287,10 +2466,11 @@ It peels around the bed and has a strange, lingering odor.
 纸上有一种令人不悦、几乎令人作呕的黄色图案，既杂乱又让人困惑，就像“一种犯了所有艺术禁忌的怪诞设计”。它在床周围开始剥落，还带着一股奇怪的、挥之不去的气味。
 
 You want to
+你想要：
 
-[[check more carefully-&gt;check wallpaper again]]
+[[check more carefully 更仔细的观察一下-&gt;check wallpaper again]]
 
-[[Stop checking -&gt;check your room]]
+[[Stop checking 停止查看-&gt;check your room]]
 &lt;script&gt;
 
 changeBackground(&#39;wallpaper1.jpg&#39;)
@@ -2314,9 +2494,11 @@ You secretly write in your diary to express your feeling. (action-1)
 你在日记里偷偷写下自己的感受。
 
 You write down: 
-[[I feel trapped 我觉得被困住了-&gt; I feel trapped]]
-[[I feel better 我感觉好多了-&gt; I feel better]]
-[[I should trust John 我应该相信John-&gt; I should trust John]]
+[[I feel something wrong with this house 我觉得这间房子有点不对-&gt; I feel trapped]]
+
+[[I feel that I&#39;m truely healing 我感觉我真的在被疗愈-&gt; I feel better]]
+
+[[What John have done are all for my own good 约翰做的事情都是为了我好的-&gt; I should trust John]]
 &lt;script&gt;
 
 changeBackground(&#39;diary1.jpg&#39;)
@@ -2328,9 +2510,11 @@ Diary become your friend. You secretly write in your diary to express your feeli
 日记本成了你的好朋友。你秘密地在日记本上写下你的感受。(action-1)
 
 You write down: 
-[[I feel trapped -&gt; I feel trapped1]]
-[[I feel better -&gt; I feel better1]]
-[[I should trust John -&gt; I should trust John1]]
+[[I feel trapped 我感觉被困住了-&gt; I feel trapped1]]
+
+[[I feel better 我感觉好多了-&gt; I feel better1]]
+
+[[I should trust John 我该相信John-&gt; I should trust John1]]
 &lt;script&gt;
 
 changeBackground(&#39;diary1.jpg&#39;)
@@ -2353,12 +2537,15 @@ changeBackground(&#39;Writewall.jpg&#39;)
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="129" name=" writing something1" tags="" position="975,3200" size="100,100">You start to write in the wallpaper.
 你开始在墙纸上写字。
 
-You want to write:
+You want to write 你想写下:
 
-[[I want to leave -&gt; I want to leave1]]
-[[I&#39;m very happy -&gt; I&#39;m very happy1]]
-[[I don&#39;t feel well -&gt; I don&#39;t feel well1]]
-[[something about wallpaper -&gt; something about wallpaper1]]
+[[I need to leave 我需要离开-&gt; I want to leave1]]
+
+[[I feel fortunate to be here with John. 我觉得和John在一起好幸运-&gt; I&#39;m very happy1]]
+
+[[I feel that my body is broken. 我觉得我的身体已经坏掉了 -&gt; I don&#39;t feel well1]]
+
+[[something about wallpaper 一些关于墙纸的事情-&gt; something about wallpaper1]]
 &lt;script&gt;
 
 changeBackground(&#39;Writewall.jpg&#39;)
@@ -2367,29 +2554,46 @@ changeBackground(&#39;Writewall.jpg&#39;)
 
 你开始在墙纸上写字。
 
-You want to write:
+You want to write 你想写:
 
-[[I want to leave -&gt; I want to leave2]]
-[[I&#39;m very happy -&gt; I&#39;m very happy2]]
-[[I don&#39;t feel well -&gt; I don&#39;t feel well2]]
-[[something about wallpaper -&gt; something about wallpaper2]]</tw-passagedata><tw-passagedata pid="131" name=" writing something3" tags="" position="500,4500" size="100,100">You start to write in the wallpaper.
+[[I want to leave 我想离开-&gt; I want to leave2]]
+
+[[I&#39;m very happy 我很幸福-&gt; I&#39;m very happy2]]
+
+[[I don&#39;t feel well 我觉得不舒服-&gt; I don&#39;t feel well2]]
+
+[[something about wallpaper 关于墙纸的一些事-&gt; something about wallpaper2]]</tw-passagedata><tw-passagedata pid="131" name=" writing something3" tags="" position="500,4500" size="100,100">You start to write in the wallpaper.
 你开始在墙纸上写东西。
 
 You want to write:
 你想要写：
 
-[[I feel worse and worse in this house, I want to leave here... -&gt; I want to leave3]]
-[[This period with John is the best time during my life -&gt; I&#39;m very happy3]]
-[[I feel increasingly weak... -&gt; I don&#39;t feel well3]]
-[[something about wallpaper -&gt; something about wallpaper3]]</tw-passagedata><tw-passagedata pid="132" name=" writing something4" tags="" position="1150,4625" size="100,100">You start to write in the wallpaper.
+[[I feel worse and worse in this house, I want to leave here... 
+在这件房子里待得越久我就感觉越痛苦，我想离开这...-&gt; I want to leave3]]
+
+[[This period with John is the best time during my life 
+和John度过的这段时间是我人生中最幸福的时光-&gt; I&#39;m very happy3]]
+
+[[I feel increasingly weak... 
+我感觉越来越虚弱了...-&gt; I don&#39;t feel well3]]
+
+[[something about wallpaper
+一些关于墙纸的事 -&gt; something about wallpaper3]]</tw-passagedata><tw-passagedata pid="132" name=" writing something4" tags="" position="1150,4625" size="100,100">You start to write in the wallpaper.
 你开始在墙纸上写字。
 
 You want to write:
-你想要写：
-[[I feel trapped, who&#39;s trapping me? The house? Or... -&gt; I want to leave4]]
-[[I feel John is my only one to rely on -&gt; I&#39;m very happy4]]
-[[My nerves are driving me crazy, they are getting worse day by day -&gt; I don&#39;t feel well4]]
-[[something about wallpaper -&gt; something about wallpaper4]]
+你想要写下：
+[[I feel trapped, who&#39;s trapping me? The house? Or... 
+我觉得我被困住了，究竟是谁困住了我？是这座房子？还是...-&gt; I want to leave4]]
+
+[[I feel John is my only one to rely on 
+我觉得John是我唯一能依靠的了-&gt; I&#39;m very happy4]]
+
+[[My nerves are driving me crazy, they are getting worse day by day 
+我的神经把我折磨得快疯掉了，它们每天都在变得更糟-&gt; I don&#39;t feel well4]]
+
+[[something about wallpaper 
+一些关于墙纸的内容-&gt; something about wallpaper4]]
 &lt;script&gt;
 
 changeBackground(&#39;Writewall.jpg&#39;)
@@ -2409,14 +2613,20 @@ But the greenhouses are all broken now.
 
 The place has been empty for years.
 
-这是一座殖民时期的宅邸，一处世袭的产业，远离道路而建，距离村庄足有三英里。围绕它的树篱、围墙和紧闭的门扉，赋予了它一种古朴的英式风貌。花园十分宜人——宽敞且绿荫蔽日，但如今温室已全部破败不堪。这里空置多年了。
+这是一座殖民时期的宅邸，一处世袭的产业，远离道路而建，距离村庄足有三英里。
+
+围绕它的树篱、围墙和紧闭的门扉，赋予了它一种古朴的英式风貌。
+
+花园十分宜人——宽敞且绿荫蔽日，但如今温室已全部破败不堪。这里空置多年了。
+
 You feel 
+你感到：
 
-[[excited-&gt; Chat with John1]]
+[[excited 激动-&gt; Chat with John1]]
 
-[[vigilant-&gt; Chat with John2]]
+[[vigilant 警觉-&gt; Chat with John2]]
 
-[[fear-&gt; Chat with John3]]</tw-passagedata><tw-passagedata pid="134" name="Background" tags="" position="1075,25" size="100,100">Summer, late nineteenth century.
+[[fear 害怕-&gt; Chat with John3]]</tw-passagedata><tw-passagedata pid="134" name="Background" tags="" position="1075,25" size="100,100">Summer, late nineteenth century.
 
 You have recently given birth, but instead of joy, exhaustion and sadness linger within you. Your thoughts feel heavy and restless, and emotions you cannot fully explain follow you wherever you go. Others call it a “nervous condition.” Your husband, a respected physician, believes you need complete rest to recover.
 
@@ -2454,9 +2664,17 @@ The summer has only begun.
 changeBackground(&#39;Action.jpg&#39;)
 
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="135" name="Becoming &quot;Her&quot;" tags="" position="1275,25" size="100,100">&lt;script&gt;
-changeBackground(&#39;BackGround1.jpg&#39;)
-&lt;/script&gt;
 
+if(window.innerWidth &lt; 768)
+{
+    changeBackground(&#39;BackGround1_mobile.jpg&#39;);
+}
+else
+{
+    changeBackground(&#39;BackGround1.jpg&#39;);
+}
+
+&lt;/script&gt;
 &lt;div id=&quot;startBtn&quot;&gt;
 (link:&quot;Press to Start&quot;)[
 
@@ -2465,37 +2683,36 @@ changeBackground(&#39;BackGround1.jpg&#39;)
     &lt;/script&gt;
 
     (goto:&quot;Background&quot;)
-
-]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="136" name="Day2Menu" tags="" position="750,2575" size="100,100">Remaining actions: $day2actions
+&lt;/div&gt;
+]</tw-passagedata><tw-passagedata pid="136" name="Day2Menu" tags="" position="750,2575" size="100,100">Remaining actions: $day2actions
 Today, you can have two actions.
 你有两次行动机会。
 
 So you choose to:
 那么你选择去：
 (if: $writeSecretly is not true)[
-[[write secretly-&gt; write secretly1]]
+[[write secretly 偷偷写日记-&gt; write secretly1]]
 ]
 (if: $Explore is not true)[
-[[explore the environment-&gt;ExploreStart1]]
+[[explore the environment 探索周围-&gt;ExploreStart1]]
 ]
 (if: $exercise is not true)[
-[[exercise-&gt; exercise1]]
+[[exercise 做些锻炼-&gt; exercise1]]
 ]
 (if: $rest is not true)[
-[[rest-&gt; rest1]]
+[[rest 休息-&gt; rest1]]
 ]</tw-passagedata><tw-passagedata pid="137" name="Day3Menu" tags="" position="650,3850" size="100,100">Remaining actions: $day3actions
 
 What do you want to do?
 你想要做什么？
 (if: $explore is not true)[
-[[explore the environment-&gt;ExploreStart4]]
+[[explore the environment 探索环境-&gt;ExploreStart4]]
 ]
 (if: $exercise is not true)[
-[[exercise-&gt; exercise3]]
+[[exercise 做锻炼-&gt; exercise3]]
 ]
 (if: $rest is not true)[
-[[rest-&gt; rest3]]
+[[rest 休息-&gt; rest3]]
 ]</tw-passagedata><tw-passagedata pid="138" name="DayMenu" tags="" position="1100,1575" size="100,100">Remaining actions: $actions
 
 What do you want to do?
@@ -2526,6 +2743,7 @@ You managed to open the door and successfully found a hidden path outside the ga
 得益于你习惯不断观察周围环境以及对探索的热爱，你脑海中现在有两个选项。
 
 [[Escape through the fence in Garden 从花园里的篱笆处逃走 -&gt; Fence]]
+
 [[Escape through the front gate 从前门逃走 -&gt; FrontGate]]
 
 ]
@@ -2598,11 +2816,11 @@ You return upstairs after exploring.
 你结束探索后回到了楼上。
 
 (if: $day3actions &gt; 0)[
-    [[Choose another activity-&gt;Day3Menu]]
+    [[Choose another activity 选择另一项活动-&gt;Day3Menu]]
 ]
 
 (else:)[
-    [[Night falls-&gt;Night3]]
+    [[Night falls 夜幕降临-&gt;Night3]]
 ]
 &lt;script&gt;
 
@@ -2616,7 +2834,7 @@ restoreMusic()
 You return upstairs after exploring, you feel tired and go to sleep.
 你探索完返回了楼上，你感到很累然后早早睡去了。
 
-[[The Next Day -&gt; Chapter3]]
+[[The Next Day 第二天 -&gt; Chapter3]]
 &lt;script&gt;
 
 changeBackground(&#39;room1.jpg&#39;)
@@ -2634,16 +2852,16 @@ Where do you want to go?
 你想要做什么？
 
 (if: $visitedGarden1 is not true)[
-[[garden-&gt; garden1]]
+[[garden 花园-&gt; garden1]]
 ]
 (if: $visitedGate1 is not true)[
-[[gate-&gt; gate1]]
+[[gate 大门-&gt; gate1]]
 ]
 (if: $visitedRoom1 is not true)[
-[[room in the first floor-&gt; room in the first floor1]]
+[[room in the first floor 一楼的房间-&gt; room in the first floor1]]
 ]
 (if: $visitedWallpaper1 is not true)[
-[[the wall paper-&gt; the wall paper1]]
+[[the wall paper 墙纸-&gt; the wall paper1]]
 ]</tw-passagedata><tw-passagedata pid="146" name="ExploreMenu3" tags="" position="600,3075" size="100,100">Explore at night requires more energy for you. (ene. -2)
 
 在晚上探索需要花费你更多精力。
@@ -2652,16 +2870,16 @@ Explore actions left: $day2actions2
 Where do you want to go?
 
 (if: $visitedGarden1 is not true)[
-[[garden-&gt; garden2]]
+[[garden 花园-&gt; garden2]]
 ]
 (if: $visitedGate1 is not true)[
-[[gate-&gt; gate2]]
+[[gate 大门-&gt; gate2]]
 ]
 (if: $visitedRoom1 is not true)[
-[[room in the first floor-&gt; room in the first floor2]]
+[[room in the first floor 一楼的房间-&gt; room in the first floor2]]
 ]
 (if: $visitedWallpaper1 is not true)[
-[[the wall paper-&gt; the wall paper2]]
+[[the wall paper 墙纸-&gt; the wall paper2]]
 ]</tw-passagedata><tw-passagedata pid="147" name="ExploreMenu4" tags="" position="500,4125" size="100,100">Explore actions left: $day3actions1
 &lt;script&gt;
 
@@ -2674,19 +2892,19 @@ Where do you want to go?
 你想要去哪？
 
 (if: $visitedGarden3 is not true)[
-[[garden-&gt; garden3]]
+[[garden 花园-&gt; garden3]]
 ]
 (if: $visitedGate3 is not true)[
-[[gate-&gt; gate3]]
+[[gate 大门-&gt; gate3]]
 ]
 (if: $visitedRoom3 is not true)[
-[[room in the first floor-&gt; room in the first floor3]]
+[[room in the first floor 一楼的房间-&gt; room in the first floor3]]
 ]
 (if: $visitedWallpaper3 is not true)[
-[[the wall paper-&gt; the wall paper3]]
+[[the wall paper 墙纸-&gt; the wall paper3]]
 ]</tw-passagedata><tw-passagedata pid="148" name="ExploreMenu5" tags="" position="775,4375" size="100,100">Explore at night requires more energy for you. (ene.-2)
 在夜晚探索会消耗你更多精力。
-Explore actions left: $day3actions2
+Explore actions left 行动点剩余: $day3actions2
 &lt;script&gt;
 
 changeMusic(&#39;environment.mp3&#39;)
@@ -2697,16 +2915,16 @@ Where do you want to go?
 你想要去哪？
 
 (if: $visitedGarden1 is not true)[
-[[garden-&gt; garden4]]
+[[garden 花园-&gt; garden4]]
 ]
 (if: $visitedGate1 is not true)[
-[[gate-&gt; gate4]]
+[[gate 大门-&gt; gate4]]
 ]
 (if: $visitedRoom1 is not true)[
-[[room in the first floor-&gt; room in the first floor4]]
+[[room in the first floor 一楼的房间-&gt; room in the first floor4]]
 ]
 (if: $visitedWallpaper1 is not true)[
-[[the wall paper-&gt; the wall paper4]]
+[[the wall paper 墙纸-&gt; the wall paper4]]
 ]</tw-passagedata><tw-passagedata pid="149" name="ExploreStart" tags="" position="1350,1425" size="100,100">(set: $Explore to true)
 (set: $actions1 to 2)
 (set: $explore to $explore + 1)
@@ -2748,6 +2966,7 @@ changeMusic(&#39;environment.mp3&#39;)
 
 You decide to explore the house.
 你决定探索房子周围
+
 [[Continue-&gt;ExploreMenu3]]</tw-passagedata><tw-passagedata pid="152" name="ExploreStart4" tags="" position="500,4000" size="100,100">(set: $day3actions1 to 2)
 (set: $explore to $explore + 1)
 (set: $visitedGarden3 to false)
@@ -2758,7 +2977,7 @@ You decide to explore the house.
 
 You decide to explore the house.
 
-你觉得去探索这个房子。
+你决定去探索这个房子。
 
 [[Continue-&gt;ExploreMenu4]]</tw-passagedata><tw-passagedata pid="153" name="ExploreStart5" tags="" position="775,4250" size="100,100">(set: $day3actions2 to 2)
 (set: $explore to $explore + 1)
@@ -2777,7 +2996,7 @@ A sleepless night has left you feeling even more exhausted, but all you can thin
 (text-style:&quot;rumble&quot;)[(text-colour:#94d82d)[You stared at the crack in the wall for a long time. Then you reached out, dug your fingernails into it, and tore off a small strip. The wallpaper crumpled in your hand, and yellow shreds fell onto your skirt.]
 你盯着墙上那条裂缝看了很久。然后伸出手，指甲掐进去，撕下了一小条。墙纸在手里皱成一团，黄色的碎屑落在裙子上。]
 
-[[Tear off -&gt; continue tear off]]
+[[Tear off 撕-&gt; continue tear off]]
 
 &lt;script&gt;
 
@@ -2799,7 +3018,7 @@ You looked up at him and said, (text-colour:#c92a2a)[“See? There’s nothing b
 
 你仰起头看他，说，你看，墙纸后面什么也没有。他没说话，只是往后退了一步，靴子踩在碎纸上，发出一声很轻的脆响...
 
-[[Reach a madness ending -&gt; ThanksPage]]
+[[Reach a madness ending 陷入疯狂的结局-&gt; ThanksPage]]
 &lt;script&gt;
 
 changeBackground(&#39;MadE.jpg&#39;)
@@ -2825,9 +3044,9 @@ You don&#39;t know when he will be back.
 In the time without John, you realize that in this house, besides talking to John, you can only :
 在没有约翰的时间里，你意识到在这个房子里，除了跟约翰说话，你只能：
 
-[[Explore around the house -&gt;ExploreStart3]]
-[[Just go to sleep directly -&gt; Sleep]]
-[[Write your diary -&gt; Write]]
+[[Explore around the house 探索房子周围-&gt;ExploreStart3]]
+[[Just go to sleep directly 直接去睡觉-&gt; Sleep]]
+[[Write your diary 写你的日记-&gt; Write]]
 &lt;script&gt;
 
 changeBackground(&#39;room2.jpg&#39;)
@@ -2842,7 +3061,7 @@ This time you decide:
 这一次，你决定：
 
 
-[[Explore around the house -&gt;ExploreStart5]]
+[[Explore around the house 探索环境-&gt;ExploreStart5]]
 [[Just go to sleep directly -&gt; Sleep1]]
 &lt;script&gt;
 
@@ -2858,7 +3077,7 @@ changeBackground(&#39;room2.jpg&#39;)
 You arrive at the house with John. 
 
 //(Please check your original status: 
-san. (sanity) : 65
+san. (sanity) : 60
 obed. (obedience) : 50
 awar. (awareness) : 50
 ener.(energy) : 30)//
@@ -2867,7 +3086,7 @@ ener.(energy) : 30)//
 
 (san. -5)
 
-[[You feel uncomfortable watching it too long.-&gt;check your room]]</tw-passagedata><tw-passagedata pid="161" name="check your room" tags="" position="1100,700" size="100,100">&lt;script&gt;
+[[You feel uncomfortable watching it too long. 长时间查看它让你感到不适 -&gt;check your room]]</tw-passagedata><tw-passagedata pid="161" name="check your room" tags="" position="1100,700" size="100,100">&lt;script&gt;
 
 changeBackground(&#39;Room.jpg&#39;)
 
@@ -2878,19 +3097,19 @@ changeMusic(&#39;environment.mp3&#39;)
 
 &lt;/script&gt;
 
-[[window-&gt; window]]
+[[window 窗户-&gt; window]]
 
-[[bed-&gt; bed]]
+[[bed 床-&gt; bed]]
 
-[[wall-&gt; wall]]
+[[wall 墙壁-&gt; wall]]
 
-[[floor-&gt; floor]]
+[[floor 地板-&gt; floor]]
 
-[[wall paper-&gt; wall paper]]
+[[wall paper 墙纸-&gt; wall paper]]
 
-[[finish checking-&gt; change room or not]]</tw-passagedata><tw-passagedata pid="162" name=" Dia" tags="" position="850,950" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
+[[finish checking 结束查看-&gt; change room or not]]</tw-passagedata><tw-passagedata pid="162" name=" Dia" tags="" position="850,950" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
 &#39;&#39;John&#39;&#39;: My dear, you must be &#39;&#39;overthinking&#39;&#39; it. I am a doctor. You have to believe that I am doing this for your own good. 
-亲爱的，你一定是&#39;&#39;想太多&#39;&#39;了。我是医生，你必须相信我是为你好。
+亲爱的，你一定是&#39;&#39;想太多&#39;&#39;了。我是医生，你要相信我是为了你好的。
 (san. -3) 
 [[Next -&gt; Dia1]]
 (set: $sanity to $sanity - 3)
@@ -2905,13 +3124,14 @@ changeMusic(&#39;environment.mp3&#39;)
 [[Next -&gt; Dia3]]
 (set: $sanity to $sanity - 2)
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="165" name=" Dia3" tags="" position="850,1325" size="100,100">At this time, you want to:
+这次，你想要：
 
-[[still change the room-&gt; still try to change the room]]
+[[still change the room 仍然提出更换房间-&gt; still try to change the room]]
 
-[[accept this room-&gt; accept this room]]
+[[accept this room 接受这个房间-&gt; accept this room]]
 </tw-passagedata><tw-passagedata pid="166" name=" Dia4" tags="" position="1225,1075" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
 &#39;&#39;John&#39;&#39;: I&#39;m so disappionted that  you don&#39;t believe me so much. I love you so much. Do you want me to stop caring about you from now on? 
-你这么不相信我，我太失望了。我非常爱你。你是不是想让我从现在起不再关心你了？
+你这么不相信我，真让我失望。我这么的爱你。你难道希望让我从现在开始再也不关心你了吗？
 (san. -1)
 [[Next -&gt; Dia5]]
 (set: $sanity to $sanity - 1)</tw-passagedata><tw-passagedata pid="167" name=" Dia5" tags="" position="1350,1200" size="100,100">Heared John&#39;s words, you can only:
@@ -2920,22 +3140,36 @@ changeMusic(&#39;environment.mp3&#39;)
 </tw-passagedata><tw-passagedata pid="168" name=" Dia6" tags="" position="1375,1325" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
 &#39;&#39;You&#39;&#39;: I think I&#39;ve just heared some strange noise in this room.
 我觉得我刚才听到这个房间里有奇怪的声音。
+
 [[Next -&gt; Dia7]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="169" name=" Dia7" tags="" position="1500,1325" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
-&#39;&#39;John:&#39;&#39; It&#39;s just your imagination, your nerves are getting all mixed up again, all you need is to relax. I have to go to work tomorrow. Can we just keep sleeping?
-只是你的想象，你的神经又紧张了，你只需要放松。我明天要上班。我们能继续睡觉吗？
+&#39;&#39;John:&#39;&#39; It&#39;s just your imagination, again, your nerves are getting all mixed up again, all you need is to relax. I have to go to work tomorrow. Can we just keep sleeping?
+又来了，亲爱的。那只是你的想象而已。你最近的神经实在太敏感了，别让这些念头继续折磨自己了。你现在需要的不是思考，而是休息。明天我还得去工作，所以别再胡思乱想了，好吗？我们继续睡吧。
 [[Next -&gt; Dia8]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="170" name=" Dia8" tags="" position="1625,1325" size="100,100">He left these words and went back to sleep again, 
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="170" name=" Dia8" tags="" position="1625,1325" size="100,100">With that, he rolled over and returned to sleep.
 
-You feel nothing better but to stay up all night. 
-说完这些话，他又睡着了，
+His words offered little comfort.
 
-你感觉毫无好转，只能整夜不睡。(awar. -5; obed. +7)
+The unease remained, lingering in the back of your mind.
+
+As the night wore on, sleep never came.
+
+You stayed awake, alone with your thoughts. (awar. -5; obed. +7)
+
+说完这些话后，他翻了个身，很快便再次沉沉睡去。
+
+可他的话并没能带来多少安慰。
+
+那股挥之不去的不安，依然萦绕在你的心头。
+
+夜色渐深，你却始终无法入睡。
+
+你睁着眼睛躺在床上，独自面对纷乱的思绪。(awar. -5; obed. +7)
 
 (set: $obedience to $obedience + 7)
 (set: $awareness to $awareness - 5)
 
-[[the next day -&gt; Chapter2]]</tw-passagedata><tw-passagedata pid="171" name=" Dia9" tags="" position="1100,2200" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
+[[the next day 第二天 -&gt; Chapter2]]</tw-passagedata><tw-passagedata pid="171" name=" Dia9" tags="" position="1100,2200" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
 &#39;&#39;John&#39;&#39;: Your nerve is messing up things again, believe me, there&#39;s nothing need to worry about. You just need more rest. Promise me, don&#39;t keep observing the surroundings too much, okay? Don&#39;t let your nerves control you. (san. -3)
 &#39;&#39;约翰&#39;&#39;：你的神经又在作祟了，相信我，没什么好担心的。你只需要多休息。答应我，别总盯着周围看，好吗？别让你紧张的神经控制你。
 [[Next -&gt; Dia10]]
@@ -2960,10 +3194,10 @@ You want to
 你想要
 [[Tell him about wallpaper 告诉他有关墙纸的事情-&gt; TellWallpaper]]
 [[Tell him you feel worse 跟他说你今天感觉更不舒服了-&gt; TellFeeling]]
-[[Tell him you fell better and care about his day today 告诉他你感觉好多了，关心一下他的一天-&gt; CareaboutJohn]]
+[[Tell him you fell better and care about his day today 告诉他你感觉好多了，并关心一下他的一天-&gt; CareaboutJohn]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="176" name=" Dia14" tags="" position="725,2200" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
 &#39;&#39;John&#39;&#39;: It&#39;s just the same as before - providing patient care.
-&#39;&#39;约翰&#39;&#39;：就和以前一样——提供患者护理。
+&#39;&#39;约翰&#39;&#39;：就和以前一样，提供患者护理。
 [[Next -&gt; Dia15]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="177" name=" Dia15" tags="" position="600,2325" size="100,100">John seems really tired and didn&#39;t talk too much with you before going back to the room. 
 约翰看起来真的很累，在回房间前没和你多聊。
@@ -2973,7 +3207,7 @@ You want to:
 [[Do something else 做些其他事-&gt; DoSomethingElse]]</tw-passagedata><tw-passagedata pid="178" name=" Dia16" tags="" position="200,3200" size="100,100">John took your diary away from your hands, now go to sleep is your only choice.
 约翰从你手里拿走了日记，现在睡觉是你唯一的选择。
 
-[[The Next Day -&gt; ToughDay3]]</tw-passagedata><tw-passagedata pid="179" name=" Dia17" tags="" position="375,4050" size="100,100">Now go to sleep is your only choice.
+[[The Next Day 第二天 -&gt; ToughDay3]]</tw-passagedata><tw-passagedata pid="179" name=" Dia17" tags="" position="375,4050" size="100,100">Now go to sleep is your only choice.
 
 现在去睡觉是你唯一的选择。
 
@@ -2994,7 +3228,7 @@ Write if you want to; don’t write if you don’t. That’s much kinder than me
 现在，上床睡觉吧，你该休息了
 Now, go to bed. It&#39;s time for you to get some rest.
 
-[[Go to Bed -&gt; GoBed]]
+[[Go to Bed 去睡觉-&gt; GoBed]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="183" name=" Suspect" tags="" position="250,3925" size="100,100">
 You search the room again and again, lifting blankets, opening drawers, and checking every corner.
 你在房间里找了一遍又一遍，掀开了毯子，打开了抽屉，找遍了每个角落
@@ -3080,16 +3314,16 @@ Where do you want to go?
 你想要做什么？
 
 (if: $visitedGarden is not true)[
-[[garden-&gt; garden]]
+[[garden 花园-&gt; garden]]
 ]
 (if: $visitedGate is not true)[
-[[gate-&gt; gate]]
+[[gate 大门-&gt; gate]]
 ]
 (if: $visitedRoom is not true)[
-[[room in the first floor-&gt; room in the first floor]]
+[[room in the first floor 一楼的那个房间-&gt; room in the first floor]]
 ]
 (if: $visitedWallpaper is not true)[
-[[the wall paper-&gt; the wall paper]]
+[[the wall paper 墙纸-&gt; the wall paper]]
 ]</tw-passagedata><tw-passagedata pid="188" name=" baby room" tags="" position="725,3375" size="100,100">The nanny, who was there to look after the child, saw you approaching and hurriedly stopped you, saying John had instructed you not to see the child because you were in poor condition.
 专门在此处照看孩子的保姆看到你走过来，急忙把你拦下，说约翰吩咐过你状态不好，不让你见孩子。
 
