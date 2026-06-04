@@ -111,12 +111,15 @@ tw-link:visited {
 }
 body {
   margin: 0;
-  background: black;
-  color: #e5dbff;
   font-family: Georgia, serif;
-}
+  color: #e5dbff;
 
-/* 🫁 背景“呼吸感” */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-color: black; /* fallback */
+}
 body::before {
   content: "";
   position: fixed;
@@ -124,8 +127,10 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: inherit;
-  opacity: 0.6;
+  pointer-events: none;
+
+  background: rgba(0,0,0,0.2); /* 只做暗层，不覆盖图片 */
+
   animation: breathe 6s ease-in-out infinite;
   z-index: 0;
 }
@@ -2720,16 +2725,16 @@ What do you want to do?
 你想要做什么？
 
 (if: $writeSecretly is not true)[
-[[write Secretly-&gt; write secretly]]
+[[write Diary 写日记-&gt; write secretly]]
 ]
 (if: $Explore is not true)[
-[[explore the environment-&gt;ExploreStart]]
+[[explore the environment 探索环境-&gt;ExploreStart]]
 ]
 (if: $exercise is not true)[
-[[exercise-&gt; exercise]]
+[[exercise 锻炼-&gt; exercise]]
 ]
 (if: $rest is not true)[
-[[rest-&gt; rest]]
+[[rest 休息-&gt; rest]]
 ]</tw-passagedata><tw-passagedata pid="139" name="EscapeEndingStart" tags="" position="650,4875" size="100,100">&lt;script&gt;
 
 changeMusic(&#39;crazy2.mp3&#39;)
@@ -3116,9 +3121,9 @@ changeMusic(&#39;environment.mp3&#39;)
 
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="163" name=" Dia1" tags="" position="850,1075" size="100,100">After hearing John&#39;s words, you want to:
 
-[[still change the room-&gt; still change the room]]
+[[still change the room 仍然想换房间-&gt; still change the room]]
 
-[[accept it-&gt; accept this room]]</tw-passagedata><tw-passagedata pid="164" name=" Dia2" tags="" position="850,1200" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
+[[accept it 接受这个房间-&gt; accept this room]]</tw-passagedata><tw-passagedata pid="164" name=" Dia2" tags="" position="850,1200" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
 &#39;&#39;John&#39;&#39;: Darling, believe me. Your nerves are troubling you—that’s why you think you need another room. But I know this place is good for you. Believe me, this is your best choice. Just trust me and stop overthinking. (san.-2)
 亲爱的，相信我。是你的神经在困扰你——所以你才会觉得需要换一间房。但我知道这个地方对你有好处。相信我，这是你最好的选择, 别想太多。
 [[Next -&gt; Dia3]]
