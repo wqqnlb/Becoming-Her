@@ -62,6 +62,24 @@ tw-link:visited {
     z-index: 999;
 
     box-sizing: border-box;
+}
+@keyframes madnessShake {
+
+    0% { transform: translate(0,0) rotate(0deg); }
+
+    25% { transform: translate(-8px,5px) rotate(-1deg); }
+
+    50% { transform: translate(8px,-5px) rotate(1deg); }
+
+    75% { transform: translate(-5px,3px) rotate(-1deg); }
+
+    100% { transform: translate(0,0) rotate(0deg); }
+
+}
+
+.madness {
+
+    animation: madnessShake 1s;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">window.musicStarted = false;
 
 window.bgMusic = new Audio("audio/crazy1.mp3");
@@ -175,6 +193,17 @@ window.changeBackground = function(imageName){
     document.body.style.backgroundPosition = "center";
 
     document.body.style.backgroundAttachment = "fixed";
+}
+window.madnessEffect = function(){
+
+    document.body.classList.add("madness");
+
+    setTimeout(function(){
+
+        document.body.classList.remove("madness");
+
+    },1000);
+
 }</script><tw-passagedata pid="1" name=" AmbiguousEnding" tags="" position="650,5000" size="100,100">As you go about your days in a daze,
 
 you gradually notice that the familiar wallpaper in the room is starting to peel away,
@@ -345,7 +374,7 @@ You decide:
 
 changeBackground(&#39;Room.jpg&#39;)
 
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="10" name=" Day2" tags="" position="725,2450" size="100,100">(set: $writeSecretly to false)
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="10" name=" Day2" tags="" position="750,2450" size="100,100">(set: $writeSecretly to false)
 (set: $Explore to false)
 (set: $exercise to false)
 (set: $rest to false)
@@ -621,6 +650,11 @@ You were so absorbed in your writing that you didn&#39;t notice that John had go
 
 你感觉这个奇怪的地方正在消耗你的精力。
 你太专注于写作，以至于没有注意到约翰在某个时候已经回家了！
+&lt;script&gt;
+
+changeMusic(&#39;foot.mp3&#39;)
+
+&lt;/script&gt;
 
 [[Now he is right behind you, watching you-&gt; ScaryJohn]]
 
@@ -681,10 +715,9 @@ John was very heartened by want you said. (san. +7)
 He saw what you had written in your diary.
 他看到了你在日记里写的东西。
 
-(set: $sanity to $sanity + 7)
-
-John was very heartened by want you said.
-约翰对你说的话感到非常开心(san. +7)
+(set: $obedience to $obedience + 3)
+John was very heartened by want you said. (obed. + 3)
+约翰对你说的话感到非常开心
 
 (set: $day2actions to $day2actions - 1)
 
@@ -724,9 +757,9 @@ Although John isn&#39;t happy after reading what you wrote, you&#39;ve express y
 He saw that you had written in your diary, John is unhappy about it. He blamed you for misunderstanding his sincere intention to help you. (san. -5; obed.-3)
 他看到你在日记里写了约翰对此感到不高兴。他责备你误解了他真心帮助你的意图。
 
-(set: $sanity to $sanity + 3)
+(set: $sanity to $sanity + 2)
 
-Although John isn&#39;t happy after reading what you wrote, you&#39;ve express your feeling by writing, and you feel a little better. (san. +3)
+Although John isn&#39;t happy after reading what you wrote, you&#39;ve express your feeling by writing, and you feel a little better. (san. +2)
 尽管约翰读了你写的内容后并不开心，但你通过写作表达了自己的感受，因此感觉好了一些。
 
 (set: $day2actions to $day2actions - 1)
@@ -805,6 +838,11 @@ You were so absorbed in your writing that you didn&#39;t notice that John had go
 
 你越来越觉得这个地方奇怪，你仍然想离开。
 你全神贯注于写作，以至于没注意到约翰不知何时已经回家了！
+&lt;script&gt;
+
+changeMusic(&#39;foot.mp3&#39;)
+
+&lt;/script&gt;
 
 [[Now he is right behind you, watching you -&gt; ScaryJohn]]
 
@@ -875,6 +913,11 @@ You were so absorbed in your writing that you didn&#39;t notice that John had go
 
 你仍然以为和约翰在这里会度过一段美好的时光。
 你当时全神贯注于写作，以至于没有注意到约翰在某个时候已经回家了！
+&lt;script&gt;
+
+changeMusic(&#39;foot.mp3&#39;)
+
+&lt;/script&gt;
 
 [[Now he is right behind you, watching you -&gt; ScaryJohn]]
 
@@ -1033,6 +1076,11 @@ Gradually, exhaustion overtook you, and you slowly drifted off to sleep...
 
 changeBackground(&#39;wallpaper4.jpg&#39;)
 
+&lt;/script&gt;
+&lt;script&gt;
+
+madnessEffect()
+
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="50" name=" MadnessNight2" tags="" position="775,5375" size="100,100">
 When John came home, he noticed that you were a little different from before. 
 约翰回家时，发现你和以前有点不一样。
@@ -1059,6 +1107,11 @@ You stared at that increasingly strange wall and didn&#39;t sleep a wink all nig
 &lt;script&gt;
 
 changeBackground(&#39;wallpaperwoman.jpg&#39;)
+
+&lt;/script&gt;
+&lt;script&gt;
+
+madnessEffect()
 
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="51" name=" MeetJohn" tags="" position="450,4975" size="100,100">&lt;script&gt;
 
@@ -1126,6 +1179,11 @@ changeBackground(&#39;room2.jpg&#39;)
 You spent your day in the lounge chair.
 
 [[Night -&gt; Nighhht]]</tw-passagedata><tw-passagedata pid="57" name=" ScaryJohn" tags="" position="600,3700" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
+&lt;script&gt;
+
+changeMusic(&#39;crazy2.mp3&#39;)
+
+&lt;/script&gt;
 &#39;&#39;John&#39;&#39;: (text-colour:#c92a2a)[&#39;&#39;What are you doing?&#39;&#39;] It&#39;s so late already, why haven&#39;t you gone to sleep? It seems that you really haven&#39;t taken my words to heart. Why the hell do you care about this wallpaper so much? I told you it was not good for your nerves. I didn&#39;t mean to snap at you, but I&#39;m really upset that you&#39;re not taking care of your health. Come rest with me now, okay? Don&#39;t make me worry about you every single moment. (san. -7)
 (set: $sanity to $sanity - 7)
 约翰：(text-colour:red)[&#39;&#39;你在干什么？&#39;&#39;] 这么晚了，你为什么还不睡觉？看来你真的没把我的话放在心上。你至于这么在意这张壁纸吗？我跟你说过这对你神经不好。我不是故意对你发火，但我真的很担心你不注意自己的健康。现在跟我一起休息好吗？别让我每时每刻都为你担心。[[Next -&gt; Dia17]]
@@ -1134,7 +1192,12 @@ You spent your day in the lounge chair.
 changeBackground(&#39;Shadow.jpg&#39;)
 
 &lt;/script&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="58" name=" ScaryJohn1" tags="" position="325,3075" size="100,100">&lt;script&gt;
+&lt;/div&gt;
+&lt;script&gt;
+
+madnessEffect()
+
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="58" name=" ScaryJohn1" tags="" position="325,3075" size="100,100">&lt;script&gt;
 
 changeMusic(&#39;crazy2.mp3&#39;)
 
@@ -1143,7 +1206,12 @@ changeMusic(&#39;crazy2.mp3&#39;)
 &#39;&#39;John&#39;&#39;: (text-colour:#c92a2a)[&#39;&#39;What are you doing?&#39;&#39;] It&#39;s so late already, why haven&#39;t you gone to sleep? It seems that you really haven&#39;t taken my words to heart. Even though you don&#39;t take good care of your body, as your husband,(text-colour:#a61e4d)[ I love you]. I hope more than anything that you&#39;ll get better soon, so I&#39;m afraid I&#39;ll have to &#39;&#39;confiscate&#39;&#39; your diary. (san. -7)
 (text-colour:#ff6b6b)[&#39;&#39;你在做什么？&#39;&#39;]已经这么晚了，为什么还没去睡觉？看来你真的没把我的话放在心上。虽然你不爱惜自己的身体，但作为你的丈夫，(text-colour:#e03131)[我爱你]。我最希望的就是你能快点好起来，所以恐怕我得&#39;&#39;没收&#39;&#39;你的日记了 (San. -10)            [[Next -&gt; Dia16]]
 (set: $sanity to $sanity - 10)
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="59" name=" Sleep" tags="" position="600,2950" size="100,100">John told you to go to bed early at night so you can recover faster. 
+&lt;/div&gt;
+&lt;script&gt;
+
+madnessEffect()
+
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="59" name=" Sleep" tags="" position="600,2950" size="100,100">John told you to go to bed early at night so you can recover faster. 
 John跟你说过想要病快点好就要早点睡觉
 Even though he&#39;s not home, you shouldn&#39;t worry him—just go to sleep. 
 即使他现在不在家，你也不应该让他担心，直接去睡觉了
@@ -1182,7 +1250,7 @@ John在你身边睡的这么安详，你觉得你也该入睡了
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="63" name=" TellWallpaper" tags="" position="975,2075" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
 (set: $awareness to $awareness + 2)
 (set: $sanity to $sanity - 3)
-(awar. +2)
+(awar. +2; san. -3)
 &#39;&#39;You:&#39;&#39; John, my dear, I think there&#39;s really something wrong with the room. I mean... today I&#39;ve clearly noticed that the yellow wallpaper has changed, it seems there&#39;s some strange things in it.
 &#39;&#39;你&#39;&#39;：约翰，亲爱的，我觉得这房间真的有问题。我是说……今天我清楚地注意到黄色墙纸变了，里面似乎有些奇怪的东西。
 [[Next -&gt; Dia9]]
@@ -1267,7 +1335,7 @@ You felt extremely tired when you woke up in the morning.
 (set: $energy to $energy - 5)
 
 
-[[the next day -&gt; Chapter2]]</tw-passagedata><tw-passagedata pid="68" name=" Write" tags="" position="350,2950" size="100,100">(&lt;script&gt;
+[[the next day -&gt; Chapter2]]</tw-passagedata><tw-passagedata pid="68" name=" Write" tags="" position="350,2950" size="100,100">&lt;script&gt;
 
 changeMusic(&#39;foot.mp3&#39;)
 
@@ -1399,6 +1467,11 @@ changeMusic(&#39;tear.mp3&#39;)
 &lt;script&gt;
 
 changeBackground(&#39;wallpaper2.jpg&#39;)
+
+&lt;/script&gt;
+&lt;script&gt;
+
+madnessEffect()
 
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="79" name=" do not change the room" tags="" position="850,825" size="100,100">You think it&#39;s okay to be here. John must be doing it for your own good. (san. -2; obed. +5; awar. -5)
 
@@ -1828,7 +1901,6 @@ You trust this is a place where can heal you.(ener. -2; obed. +3)
 (set: $obedience to $obedience + 3)
 (set: $energy to $energy - 2)
 
-(if: $day3actions &gt; 0)[
 
    [[Night falls-&gt;Night3]]
 </tw-passagedata><tw-passagedata pid="104" name=" room in the first floor" tags="" position="1200,1750" size="100,100">
@@ -1868,7 +1940,12 @@ This room is more comfortable and brighter than where you&#39;re staying now, ye
 
 (else:)[
     [[Finish exploring-&gt;ExploreEnd1]]
-]</tw-passagedata><tw-passagedata pid="106" name=" room in the first floor2" tags="" position="350,3200" size="100,100">
+]
+&lt;script&gt;
+
+changeBackground(&#39;firstroom.jpg&#39;)
+
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="106" name=" room in the first floor2" tags="" position="350,3200" size="100,100">
 (set: $visitedRoom1 to true)
 
 You once again entered that room you had long desired. 
@@ -1990,7 +2067,7 @@ It is not clear yet, but it is there. And I believe it is moving.(san.-5)
     [[Finish exploring-&gt;ExploreEnd1]]
 ]</tw-passagedata><tw-passagedata pid="111" name=" something about wallpaper2" tags="" position="475,3700" size="100,100">&lt;script&gt;
 
-changeMusic(&#39;crazy2.mp3&#39;)
+changeMusic(&#39;foot.mp3&#39;)
 
 &lt;/script&gt;
 You were so absorbed in your writing that you didn&#39;t notice that John had gone home at some point! John&#39;s shadow was reflected on the yellow wallpaper, making it look even more eerie and terrifying. (san. -5）
@@ -2042,7 +2119,7 @@ The woman behind it is as plain as can be(san.-5)
 You: But...I think the room in the first floor will make me feel better. 
 你：但是……我觉得一楼的房间会让我感觉更好。
 [[Next -&gt; Dia2]]
-
+&lt;/div&gt;
 </tw-passagedata><tw-passagedata pid="115" name=" still try to change the room" tags="" position="975,1075" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
 You: But I don’t feel happy here. Is this really the right place for me?
 你：但我在这里感觉不到快乐。这里真的是适合我的地方吗？
@@ -2106,10 +2183,10 @@ changeBackground(&#39;wallpaper1.jpg&#39;)
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="120" name=" the wall paper2" tags="" position="475,3275" size="100,100">
 (set: $visitedWallpaper1 to true)
 
-You find the wall paper seem to change again. (san. -2)
+You find the wall paper seem to change again. (san. -3)
 
 你发现墙纸又在变化。
-(set: $sanity to $sanity - 2)
+(set: $sanity to $sanity - 3)
 
 You decide to:
 
@@ -2120,8 +2197,8 @@ You decide to:
 changeBackground(&#39;wallpaper4.jpg&#39;)
 
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="121" name=" the wall paper3" tags="" position="500,4375" size="100,100">
-(set: $visitedWallpaper3 to true)
-You find the wall paper seem to change again.
+(set: $visitedWallpaper3 to true) (set: $sanity to $sanity - 3)
+You find the wall paper seem to change again. (san. -3)
 你发现这个墙纸又变了。
 
 You decide to:
@@ -2253,7 +2330,7 @@ You want to write:
 
 changeBackground(&#39;Writewall.jpg&#39;)
 
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="130" name=" writing something2" tags="" position="600,3450" size="100,100">You start to write in the wallpaper.
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="130" name=" writing something2" tags="" position="575,3400" size="100,100">You start to write in the wallpaper.
 
 你开始在墙纸上写字。
 
@@ -2744,7 +2821,7 @@ This time you decide:
 
 changeBackground(&#39;room2.jpg&#39;)
 
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="159" name="StartGame" tags="" position="1100,200" size="100,100">(set: $sanity to 65)
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="159" name="StartGame" tags="" position="1100,200" size="100,100">(set: $sanity to 60)
 (set: $obedience to 50)
 (set: $awareness to 50)
 (set: $energy to 30)
@@ -2791,13 +2868,11 @@ changeMusic(&#39;environment.mp3&#39;)
 [[Next -&gt; Dia1]]
 (set: $sanity to $sanity - 3)
 
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="163" name=" Dia1" tags="" position="850,1075" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
-After hearing John&#39;s words, you want to:
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="163" name=" Dia1" tags="" position="850,1075" size="100,100">After hearing John&#39;s words, you want to:
 
 [[still change the room-&gt; still change the room]]
 
-[[accept it-&gt; accept this room]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="164" name=" Dia2" tags="" position="850,1200" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
+[[accept it-&gt; accept this room]]</tw-passagedata><tw-passagedata pid="164" name=" Dia2" tags="" position="850,1200" size="100,100">&lt;div class=&quot;dialogueBox&quot;&gt;
 &#39;&#39;John&#39;&#39;: Darling, believe me. Your nerves are troubling you—that’s why you think you need another room. But I know this place is good for you. Believe me, this is your best choice. Just trust me and stop overthinking. (san.-2)
 亲爱的，相信我。是你的神经在困扰你——所以你才会觉得需要换一间房。但我知道这个地方对你有好处。相信我，这是你最好的选择, 别想太多。
 [[Next -&gt; Dia3]]
@@ -2871,7 +2946,7 @@ You want to:
 [[Do something else 做些其他事-&gt; DoSomethingElse]]</tw-passagedata><tw-passagedata pid="178" name=" Dia16" tags="" position="200,3200" size="100,100">John took your diary away from your hands, now go to sleep is your only choice.
 约翰从你手里拿走了日记，现在睡觉是你唯一的选择。
 
-[[The Next Day -&gt; ToughDay3]]</tw-passagedata><tw-passagedata pid="179" name=" Dia17" tags="" position="375,4000" size="100,100">Now go to sleep is your only choice.
+[[The Next Day -&gt; ToughDay3]]</tw-passagedata><tw-passagedata pid="179" name=" Dia17" tags="" position="375,4050" size="100,100">Now go to sleep is your only choice.
 
 现在去睡觉是你唯一的选择。
 
