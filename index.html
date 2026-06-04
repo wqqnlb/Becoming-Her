@@ -927,11 +927,11 @@ Although John isn&#39;t happy after reading what you wrote, you&#39;ve express y
 (set: $day2actions to $day2actions - 1)
 
 (if: $day2actions &gt; 0)[
-    [[Choose another action-&gt;Day2Menu]]
+    [[Choose another action 选择其他活动-&gt;Day2Menu]]
 ]
 
 (else:)[
-    [[Night falls-&gt;Night2]]
+    [[Night falls 夜幕降临-&gt;Night2]]
 ]</tw-passagedata><tw-passagedata pid="31" name=" I should trust John" tags="" position="1125,1900" size="100,100">(set: $obedience to $obedience + 5)
 
 John was very happy to read your diary; your relationship as a couple has grown even stronger. 
@@ -1433,7 +1433,16 @@ John在你身边睡的这么安详，你觉得你也该入睡了
 
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="64" name=" ThanksPage" tags="" position="500,5150" size="100,100">&lt;script&gt;
 changeMusic(&#39;crazy1.mp3&#39;);
-changeBackground(&#39;BackGround1.jpg&#39;);
+
+if (window.matchMedia(&quot;(max-width: 768px)&quot;).matches)
+{
+    changeBackground(&#39;BackGround1_mobile.jpg&#39;);
+}
+else
+{
+    changeBackground(&#39;BackGround1.jpg&#39;);
+}
+
 setTimeout(() =&gt; {
   let audio = document.querySelector(&quot;audio&quot;);
   if (audio) {
@@ -1778,11 +1787,11 @@ You think you should do more exercise to regain your energy. (action-1; ener.+3)
 (set: $energy to $energy + 3)
 
 (if: $day3actions &gt; 0)[
-    [[Choose another action-&gt;Day3Menu]]
+    [[Choose another action 选择其他的活动-&gt;Day3Menu]]
 ]
 
 (else:)[
-    [[Night falls-&gt;Night3]]
+    [[Night falls 夜幕降临-&gt;Night3]]
 ]</tw-passagedata><tw-passagedata pid="88" name=" first night" tags="" position="1100,1075" size="100,100">After exhausted from a long journey, you and John go to bed early,
 
 However, in the mid-night, a strange noise wake you up,
@@ -2290,7 +2299,8 @@ You were so absorbed in your writing that you didn&#39;t notice that John had go
 约翰的影子映在黄色的墙纸上，让那墙纸看起来更加阴森恐怖。
 
 (set: $sanity to $sanity - 5)
-[[Now he is right behind you, watching you -&gt; ScaryJohn]]</tw-passagedata><tw-passagedata pid="112" name=" something about wallpaper3" tags="" position="450,4775" size="100,100">&lt;script&gt;
+[[Now he is right behind you, watching you 
+他现在就在你身后，注视着你 -&gt; ScaryJohn]]</tw-passagedata><tw-passagedata pid="112" name=" something about wallpaper3" tags="" position="450,4775" size="100,100">&lt;script&gt;
 
 changeMusic(&#39;wallchange.mp3&#39;)
 
@@ -3065,7 +3075,7 @@ This time you decide:
 
 
 [[Explore around the house 探索环境-&gt;ExploreStart5]]
-[[Just go to sleep directly -&gt; Sleep1]]
+[[Just go to sleep directly 直接去睡觉-&gt; Sleep1]]
 &lt;script&gt;
 
 changeBackground(&#39;room2.jpg&#39;)
